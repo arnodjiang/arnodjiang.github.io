@@ -17,7 +17,7 @@ Education
 Work/Intern experience
 ======
 * Spring 2024: Algorithm (Technical research, GUI Agent)
-  * Tencent | IEG | Turing Lab
+  * Tencent|IEG|Turing Lab
   * Duties included: Updates and improvements to template
   * Supervisor: Junle Wang
 
@@ -27,7 +27,7 @@ Work/Intern experience
   * Supervisor: Yankun Huang
 
 * Summer 2024: Algorithm (Excel Copilot)
-  * Microsoft | DKI
+  * Microsoft|DKI
   * Duties included: Tagging issues
   * Supervisor: Rui Ding
 
