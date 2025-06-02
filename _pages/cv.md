@@ -14,6 +14,12 @@ Education
 * M.S. in Wuhan, Wuhan University, 2026
 * B.S. in Wuhan, Hubei University of Economics, 2023
 
+Publications
+======
+  <ul>{% for post in site.publications reversed %}
+    {% include archive-single-cv.html %}
+  {% endfor %}</ul>
+
 Work/Intern experience
 ======
 * Spring 2025: Algorithm (Technical research, GUI Agent)
@@ -30,13 +36,3 @@ Work/Intern experience
   * Microsoft - DKI
   * Duties included: Tagging issues
   * Supervisor: Rui Ding
-
-Publications
-======
-  <ul>{% for post in site.publications reversed %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
-  
-Service and leadership
-======
-* Currently signed in to 43 different slack teams
