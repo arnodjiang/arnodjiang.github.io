@@ -16,12 +16,12 @@ Education
 
 Work/Intern experience
 ======
-* Spring 2024: Algorithm (Technical research, GUI Agent)
+* Spring 2025: Algorithm (Technical research, GUI Agent)
   * Tencent|IEG|Turing Lab
   * Duties included: Updates and improvements to template
   * Supervisor: Junle Wang
 
-* Fall 2015: Algorithm (Multimodel)
+* Winter 2024: Algorithm (Multimodel)
   * Zhipu AI
   * Duties included: Merging pull requests
   * Supervisor: Yankun Huang
