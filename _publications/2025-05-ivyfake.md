@@ -24,5 +24,5 @@ Key contributions and findings include:
 * Distillation of a new benchmark dataset comprising 100K images and 100K videos with explainable AIGC detection data. This was achieved by using Gemini 2.5 Pro to distill Long COT (Chain-of-Thought) explanations along 12 sub-dimensions across spatial and temporal aspects, with data quality assessed by spatial and temporal reward models.
 * Demonstrated the effectiveness of the distilled explainable data by fine-tuning Qwen2.5-VL-7B on 100K image data, which improved the F1 score on a 10K test set from 83% to 95%.
 * A 3B parameter model, trained in multiple stages (general knowledge, AIGC classification data, explainable data) based on Llava-next, achieved SOTA on multiple benchmarks, notably outperforming the AIDE model by approximately 15% ACC on the Chameleon 2024 benchmark.
-* The project has a dedicated webpage: [https://pi3ai.github.io/IvyFake](https://pi3ai.github.io/IvyFake).
+* The project has a dedicated webpage: [https://pi3ai.github.io/Ivy-Fake](https://pi3ai.github.io/Ivy-Fake).
 * This work is currently in submission to NeurIPS 2025, with Jiang Changjiang as a co-first author.
