@@ -4,14 +4,14 @@ title: "CV"
 permalink: /cv/
 author_profile: true
 redirect_from:
-  - /resume
+  - /
 ---
 
 About me
 ======
 I am a Master's candidate graduating from Wuhan University in 2026. I have previously worked as an algorithm intern at Tencent, Zhipu AI, and Microsoft. I expect to receive my Master’s degree from Wuhan University in June 2026 (supervised by Prof. Wei Lu from the School of Information Management).
 
-🔍 Currently, I am actively seeking PhD opportunities for Fall 2026 — please feel free to reach out if you have openings or collaborations! 🙌
+- Currently, I am actively seeking **PhD** opportunities for **Fall 2026** — please feel free to reach out if you have openings or collaborations! 🙌
 
 Research Interests​
 ======
