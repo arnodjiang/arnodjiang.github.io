@@ -12,9 +12,9 @@ site_theme               : "default"
 title                    : "ArnoD Jiang Personal Site"
 title_separator          : "-"
 name                     : &name "Changjiang Jiang"
-description              : &description "A tang person"
+description              : &description "Tang person is here."
 url                      : https://arnodjiang.github.io # the base hostname & protocol for your site e.g. "https://[your GitHub username].github.io" or if you already have some other page hosted on Github then use "https://[your GitHub username].github.io/[Your Repo Name]"
-baseurl                  : "" # the subpath of your site, e.g. "/blog"
+baseurl                  : "/cv" # the subpath of your site, e.g. "/blog"
 repository               : "arnodjiang/arnodjiang.github.io"
 
 # Site Author - The following control what appear as part of the author content on the side bar.
@@ -24,9 +24,9 @@ author:
   # Biographic information
   avatar           : "profile.png"
   name             : "Changjiang Jiang"
-  pronouns         : "It"# example: "she/her"  
-  bio              : "Someone you know"
-  location         : "TianMen"
+  pronouns         : # example: "she/her"  
+  bio              : # "Someone you know"
+  location         : # XX
   employer         : "Wuhan University"
   URI              : "https://arnodjiang.github.io"# URL
   email            : "thejiangcj@gmail.com" 
@@ -34,11 +34,11 @@ author:
   # Academic websites
   academia         : "https://arnodjiang.github.io"# URL
   arxiv            : # URL - Update with the correct link to your profile
-  googlescholar    : 
+  googlescholar    : # URL
   impactstory      : # URL
   orcid            : #ORCID
   semantic         : # URL
-  pubmed           : 
+  pubmed           : # URL
   researchgate     : # URL
   scopus           : # URL
 

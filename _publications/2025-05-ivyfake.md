@@ -3,14 +3,20 @@ title: "Ivy-Fake: A Unified Explainable Framework and Benchmark for Image and Vi
 collection: publications
 category: manuscripts
 permalink: /publication/2025-05-31-ivy-fake
-excerpt: 'This paper presents Ivy-Fake, a unified framework and benchmark for the explainable detection of AI-generated images and videos, addressing current gaps in AIGC explainability and unified datasets by creating a new benchmark. [cite: 2, 3]'
+excerpt: 'This paper presents Ivy-Fake, a unified framework and benchmark for the explainable detection of AI-generated images and videos, addressing current gaps in AIGC explainability and unified datasets by creating a new benchmark.'
 date: 2025-05-31
-venue: 'NeurIPS 2025 (In Submission) [cite: 1, 2]'
+venue: 'NeurIPS 2025 (In Submission)'
 slidesurl: ''
-paperurl: 'https://arxiv.org/abs/2506.00979 [cite: 3]'
+paperurl: 'https://arxiv.org/abs/2506.00979'
 bibtexurl: ''
-citation: 'Jiang, Changjiang, et al. (2025). &quot;Ivy-Fake: A Unified Explainable Framework and Benchmark for Image and Video AIGC Detection.&quot; <i>arXiv:2506.00979 and NeurIPS 2025 (In Submission)</i>.'
+citation: 'Zhang W, <b>Jiang C</b>, Zhang Z, et al. IVY-FAKE: A Unified Explainable Framework and Benchmark for Image and Video AIGC Detection[J]. arXiv preprint arXiv:2506.00979, 2025. <b>NeurIPS 2025 (In Submission)</b>.'
 ---
+
+[Project URL](https://pi3ai.github.io/IvyFake/)
+
+[![Paper](https://img.shields.io/badge/paper-arXiv-B31B1B.svg)](https://arxiv.org/abs/2506.00979)
+[![Hugging Face Datasets](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Datasets-blue)](https://huggingface.co/datasets/AI-Safeguard/Ivy-Fake)
+[![GitHub Code](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Pi3AI/Ivy-Fake)
 
 This paper introduces Ivy-Fake, which focuses on the explainable classification and detection of AI-generated content (AIGC), particularly for images and videos. It addresses two primary issues: the lack of explainability in current AIGC-generated video content and the shortage of unified datasets for AIGC detection across both images and videos.
 
