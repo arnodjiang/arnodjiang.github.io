@@ -1656,7 +1656,7 @@ div.paginate-container li:nth-last-child(2) a:after {
 } */
 
 .pub-left > .intro-img {
-    width: 200px; /* Set your desired width */
+    width: 180px; /* Set your desired width */
     height: 130px; /* Set your desired height */
     border-style: solid;
     border-color: #9b3022;
