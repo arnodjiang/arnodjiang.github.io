@@ -1692,6 +1692,59 @@ div.paginate-container li:nth-last-child(2) a:after {
     }
 }
 
+.pub>.title {
+    font-weight: 600
+}
+
+.pub>.authors>.author {
+    color: #0077B5;
+    font-weight: 400
+}
+
+.pub>.tags>.tag {
+    color: #9b3022;
+    font-weight: 500;
+    font-size: 14px
+}
+
+.pub>.desc>p {
+    margin: auto
+}
+
+.pub>.publish {
+    float: right
+}
+
+.pub>.publish>.publisher {
+    color: #002336;
+    font-size: 16px
+}
+
+.pub>.publish>.status {
+    color: #9b3022;
+    font-weight: 800;
+    font-size: 16px
+}
+
+@media screen and (max-width: 600px) {
+    .pub>.publish>.status {
+        display: none
+    }
+}
+
+.pub>.publish>.place {
+    color: #0077B5;
+    font-weight: 500;
+    font-size: 16px
+}
+
+@media screen and (max-width: 600px) {
+    .pub>.publish>.place {
+        display: none
+    }
+}
+
+
 .pub-right>.title {
     font-weight: 600
 }
