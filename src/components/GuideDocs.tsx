@@ -9,7 +9,7 @@ import {
   FaLaptopCode, FaPenFancy, FaBriefcase, FaFlask, FaBullhorn,
   FaUser, FaImage, FaTerminal, FaCloudUploadAlt, FaQuestionCircle,
   FaChevronDown, FaArrowLeft, FaFolder, FaFile, FaCode,
-  FaLightbulb, FaRobot, FaGlobe,
+  FaLightbulb,
 } from 'react-icons/fa'
 import { IconType } from 'react-icons'
 import { terminalPalette } from '@/config/theme'
@@ -139,11 +139,10 @@ npm run dev` },
       ] },
       { type: 'text', content: 'Common presets to get started quickly:' },
       { type: 'table', content: `Preset|What to enable
+Academic researcher|publications, experience, news, articles
 Software developer|projects, experience, articles
-Researcher / Academic|publications, experience, news, articles
-Student / Job seeker|projects, experience, awards
 Designer / Creative|projects, articles
-Minimal|projects only` },
+Minimal portfolio|projects, experience` },
       { type: 'code', label: 'How it looks in site.json', content: `"features": {
   "publications": true,
   "projects": true,
@@ -472,80 +471,6 @@ npm run validate` },
     ],
   },
   {
-    id: 'mcp-server',
-    icon: FaRobot,
-    accent: '#88c0d0',
-    title: 'AI Integration (MCP)',
-    subtitle: 'Let AI generate your portfolio from a resume — powered by Model Context Protocol',
-    blocks: [
-      { type: 'text', content: 'TermHub includes a built-in MCP (Model Context Protocol) server that lets AI assistants like Claude directly read, write, and manage your portfolio content. Instead of editing files manually, you can give your resume to Claude and have it generate everything automatically.' },
-      { type: 'steps', steps: [
-        { title: 'Install the MCP server', desc: 'Navigate to the mcp-server/ directory inside TermHub and install its dependencies.' },
-        { title: 'Configure your AI client', desc: 'Add the MCP server to Claude Desktop or Claude Code so the AI can use TermHub tools.' },
-        { title: 'Talk to the AI', desc: 'Tell Claude to read your resume and generate your portfolio. It calls the tools automatically.' },
-      ] },
-      { type: 'code', label: 'Install MCP server', content: `# Install MCP server dependencies
-cd mcp-server && npm install
-
-# The server is built automatically after install
-# Verify it works:
-node dist/index.js --help` },
-      { type: 'text', content: 'Configure the MCP server in your AI client:' },
-      { type: 'code', label: 'Claude Desktop — add to claude_desktop_config.json', content: `{
-  "mcpServers": {
-    "termhub": {
-      "command": "node",
-      "args": ["/path/to/TermHub/mcp-server/dist/index.js"],
-      "env": {
-        "TERMHUB_ROOT": "/path/to/TermHub"
-      }
-    }
-  }
-}` },
-      { type: 'code', label: 'Claude Code — .mcp.json already included in the project root', content: `{
-  "mcpServers": {
-    "termhub": {
-      "command": "node",
-      "args": ["mcp-server/dist/index.js"],
-      "env": { "TERMHUB_ROOT": "." }
-    }
-  }
-}` },
-      { type: 'text', content: 'After configuring, restart your AI client. Then you can say things like:' },
-      { type: 'code', label: 'Example prompts to Claude', content: `# Generate from resume PDF
-"Parse my resume at ~/Desktop/resume.pdf and generate my portfolio."
-
-# Generate from pasted text
-"Here is my CV content: [paste text]. Generate all TermHub content."
-
-# Add individual items
-"Add a new publication: title is 'xxx', venue ACL 2025, I'm first author."
-"Add a project: a web app called 'xxx' built with React and Node.js."
-
-# Check status
-"What content does my portfolio have right now?"` },
-      { type: 'text', content: 'The MCP server exposes 19 tools. Here are the most commonly used ones:' },
-      { type: 'table', content: `Tool|What it does
-get_schema|Returns all data types — AI calls this first to understand the structure
-get_site_status|Overview of current content (counts, profile info)
-parse_pdf|Extract text from a PDF resume
-generate_from_resume|All-in-one: creates a blueprint from resume text for AI to follow
-update_site_config|Set name, email, social links, terminal config
-add_publication|Add a paper (with full metadata validation)
-add_project|Add a project with tags, highlights, category
-add_experience|Add a work/research timeline entry
-add_education|Add an education entry
-add_news|Add a news item
-add_award|Add an award or honor
-write_markdown_content|Write any Markdown content file
-write_json_content|Write any JSON content file
-manage_assets|Copy images (avatar, logos) to the right directories
-preview_site|Start dev server or build for production
-reset_content|Clear all content for a fresh start` },
-      { type: 'tip', content: 'The typical AI workflow is: parse_pdf → generate_from_resume → reset_content → call individual add_* tools for each item → preview_site. The whole process takes under a minute.' },
-    ],
-  },
-  {
     id: 'faq',
     icon: FaQuestionCircle,
     accent: '#b48ead',
@@ -558,7 +483,7 @@ reset_content|Clear all content for a fresh start` },
         { name: 'Avatar or logo not showing?', desc: 'Make sure the file is in content/images/ and the filename matches exactly (case-sensitive). Check avatar field in site.json or key in logos.json.' },
         { name: 'How to change colors/theme?', desc: 'Edit src/config/theme.ts — this requires some code knowledge. The file has comments explaining each color.' },
         { name: 'How to add a new page?', desc: 'Requires code changes: create a component in src/components/, add a route in src/App.tsx, and add to navItems in src/site.config.ts.' },
-        { name: 'Not a researcher?', desc: 'No problem! Disable publications and research in site.json, focus on projects and articles. TermHub works great for developers, designers, students, and anyone who wants a clean portfolio.' },
+        { name: 'Non-academic portfolio?', desc: 'Absolutely! Just disable publications and research in site.json features, and focus on projects and articles. Works great for developers, designers, and writers.' },
       ] },
     ],
   },
@@ -1050,47 +975,6 @@ const GuideDocs: React.FC = () => {
             <Badge px={2.5} py={1} borderRadius="full" bg="rgba(180,142,173,0.12)" color="#b48ead" fontSize="xs" fontWeight="600">
               No Code Required
             </Badge>
-          </Flex>
-
-          {/* No-code alternative */}
-          <Flex
-            mt={5}
-            bg={isDark ? 'rgba(136,192,208,0.06)' : 'rgba(136,192,208,0.08)'}
-            border={`1px solid ${isDark ? 'rgba(136,192,208,0.15)' : 'rgba(136,192,208,0.2)'}`}
-            borderRadius="md"
-            px={4} py={3}
-            align="center"
-            justify="space-between"
-            flexWrap="wrap"
-            gap={3}
-          >
-            <HStack spacing={2} flex={1}>
-              <Text fontSize="xs" color={tc.command} fontWeight="bold" fontFamily="mono" flexShrink={0}>TIP</Text>
-              <Text fontSize="xs" color={mutedText} lineHeight="1.7">
-                <Text as="span" fontWeight="bold">Don&apos;t want to set up a dev environment?</Text>
-                {' '}We also offer a hosted solution — just upload your resume and get a live portfolio. No Git, no terminal, no coding required.
-              </Text>
-            </HStack>
-            <Flex
-              as="a"
-              href="https://termhubai.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              bg={tc.command}
-              color="white"
-              px={4} py={1.5}
-              borderRadius="md"
-              fontWeight="semibold"
-              fontSize="xs"
-              align="center"
-              gap={1.5}
-              _hover={{ opacity: 0.85 }}
-              transition="all 0.2s"
-              flexShrink={0}
-            >
-              <Icon as={FaGlobe} boxSize={3} />
-              termhubai.com
-            </Flex>
           </Flex>
         </Box>
 

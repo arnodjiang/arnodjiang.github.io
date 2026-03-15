@@ -9,19 +9,12 @@
  */
 
 import siteJson from '@content/site.json'
-import siteJsonZh from '@content/zh/site.json'
 
 // ═══════════════════════════════════════════════════════════════
 // The config object — mirrors content/site.json
 // ═══════════════════════════════════════════════════════════════
 
 export const siteConfig = siteJson
-export const siteConfigZh = siteJsonZh
-
-/** Get site config for a given language */
-export function getLocalizedSiteConfig(lang: string) {
-  return lang === 'zh' ? siteConfigZh : siteJson
-}
 
 // ═══════════════════════════════════════════════════════════════
 // Derived values — computed automatically, do NOT edit
@@ -35,16 +28,16 @@ export const selectedPublicationIds = new Set<string>(siteConfig.selectedPublica
 
 /** Auto-generated navigation from enabled features */
 export const navItems = [
-  { path: '/', labelKey: 'nav.home' },
-  ...(siteConfig.features.publications ? [{ path: '/publications', labelKey: 'nav.publications' }] : []),
-  ...(siteConfig.features.experience ? [{ path: '/experience', labelKey: 'nav.experience' }] : []),
-  ...(siteConfig.features.projects ? [{ path: '/projects', labelKey: 'nav.projects' }] : []),
-  ...(siteConfig.features.articles ? [{ path: '/articles', labelKey: 'nav.articles' }] : []),
-  ...(siteConfig.features.guide !== false ? [{ path: '/guide', labelKey: 'nav.guide' }] : []),
+  { path: '/', label: 'Home' },
+  ...(siteConfig.features.publications ? [{ path: '/publications', label: 'Publications' }] : []),
+  ...(siteConfig.features.experience ? [{ path: '/experience', label: 'Experience' }] : []),
+  ...(siteConfig.features.projects ? [{ path: '/projects', label: 'Projects' }] : []),
+  ...(siteConfig.features.articles ? [{ path: '/articles', label: 'Articles' }] : []),
+  ...(siteConfig.features.guide !== false ? [{ path: '/guide', label: 'Guide' }] : []),
 ] as const
 
 /** Hero social icons with resolved URLs from social config */
-export const heroSocialIcons = (siteConfig.heroSocialIcons ?? []).map(item => ({
+export const heroSocialIcons = siteConfig.heroSocialIcons.map(item => ({
   icon: item.icon,
   label: item.label,
   color: item.color,
@@ -68,26 +61,5 @@ export const siteOwner = {
   social: siteConfig.social,
   timezone: siteConfig.terminal.timezone,
   skills: siteConfig.terminal.skills,
-  pets: (siteConfig.pets ?? []) as { name: string; emoji: string; image: string; title: string; description: string }[],
+  pets: siteConfig.pets as { name: string; emoji: string; image: string; title: string; description: string }[],
 } as const
-
-/** Build a siteOwner-like object for a given language */
-export function getLocalizedSiteOwner(lang: string) {
-  const cfg = getLocalizedSiteConfig(lang)
-  return {
-    name: cfg.name,
-    terminalUsername: cfg.terminal.username,
-    rotatingSubtitles: cfg.terminal.rotatingSubtitles,
-    contact: {
-      email: cfg.contact.email,
-      academicEmail: cfg.contact.academicEmail,
-      hiringEmail: cfg.contact.hiringEmail,
-      location: cfg.contact.location,
-      linkedin: cfg.social.linkedin,
-    },
-    social: cfg.social,
-    timezone: cfg.terminal.timezone,
-    skills: cfg.terminal.skills,
-    pets: (cfg.pets ?? []) as { name: string; emoji: string; image: string; title: string; description: string }[],
-  }
-}

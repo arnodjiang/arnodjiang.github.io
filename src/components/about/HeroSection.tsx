@@ -2,9 +2,7 @@ import { Box, VStack, Text, useColorModeValue, Image, HStack, Container, Stack, 
 import { motion } from 'framer-motion'
 import { withBase } from '@/utils/asset'
 import DynamicIcon from '../DynamicIcon'
-import { useTranslation } from 'react-i18next'
-import { heroSocialIcons } from '@/site.config'
-import { useLocalizedData } from '@/hooks/useLocalizedData'
+import { siteOwner, siteConfig, heroSocialIcons } from '@/site.config'
 
 const MotionBox = motion(Box)
 const MotionText = motion(Text)
@@ -34,8 +32,6 @@ interface HeroSectionProps {
 }
 
 const HeroSection = ({ title, avatar, research = [], researchLogos = {}, education = [], educationLogos = {} }: HeroSectionProps) => {
-  const { t } = useTranslation()
-  const { siteOwner, siteConfig } = useLocalizedData()
   const headingColor = useColorModeValue('gray.800', 'white')
   const textColor = useColorModeValue('gray.600', 'gray.400')
   const bg = useColorModeValue('gray.50', 'gray.900')
@@ -94,7 +90,7 @@ const HeroSection = ({ title, avatar, research = [], researchLogos = {}, educati
                 whiteSpace="nowrap"
                 display="inline-block"
               >
-                {t('hero.greeting')}{' '}
+                Hi there, I'm{' '}
               </MotionText>
               <MotionText
                 as="span"
@@ -128,7 +124,7 @@ const HeroSection = ({ title, avatar, research = [], researchLogos = {}, educati
               w="full"
             >
               <Text color="yellow.400" fontSize={["xs", "sm"]}>$</Text>
-              <Text fontSize={["xs", "sm"]} color={useColorModeValue('gray.600', 'gray.400')}>{t('hero.sometimesI')}</Text>
+              <Text fontSize={["xs", "sm"]} color={useColorModeValue('gray.600', 'gray.400')}>Sometimes I</Text>
               <Box h={["18px", "20px", "24px"]} overflow="hidden">
                 <MotionBox
                   animate={{ y: [0, -18, -36, -54, -72, -90, 0] }}
@@ -222,8 +218,8 @@ const HeroSection = ({ title, avatar, research = [], researchLogos = {}, educati
 
             {/* Welcome + contact */}
             <Flex w="full" direction={['column', 'column', 'row']} align={['center', 'center', 'center']} gap={[2, 2, 4]}>
-              <Text fontSize="xs" color={textColor} lineHeight="tall" textAlign={['center', 'center', 'left']} flex={1} fontStyle="italic">
-                {siteConfig.tagline ?? ''}
+              <Text fontSize="xs" color={textColor} lineHeight="tall" textAlign={['center', 'center', 'left']} flex={1}>
+                Feel free to reach out! Whether for collaboration, brainstorming, or just exchanging ideas, I'd love to connect and explore new possibilities together.
               </Text>
               <HStack spacing={2} flexShrink={0}>
                 <Link href={`mailto:${siteOwner.contact.academicEmail}`} isExternal _hover={{ textDecoration: 'none' }}>
@@ -273,9 +269,9 @@ const HeroSection = ({ title, avatar, research = [], researchLogos = {}, educati
                   </Tooltip>
                 ))}
               </HStack>
-              {((siteConfig.pets ?? []) as { name: string; emoji: string; image: string }[]).length > 0 && (
+              {(siteConfig.pets as { name: string; emoji: string; image: string }[]).length > 0 && (
                 <HStack spacing={[4, 5]} justify="center">
-                  {((siteConfig.pets ?? []) as { name: string; emoji: string; image: string }[]).map((pet) => (
+                  {(siteConfig.pets as { name: string; emoji: string; image: string }[]).map((pet) => (
                     <VStack key={pet.name} spacing={2}>
                       {pet.image && (
                         <Image

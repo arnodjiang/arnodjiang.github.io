@@ -30,11 +30,11 @@ import {
   ModalCloseButton
 } from '@chakra-ui/react'
 import { keyframes } from '@emotion/react'
-import { getPublicationStats } from '../data'
-import { useLocalizedData } from '@/hooks/useLocalizedData'
+import { publications, getPublicationStats } from '../data'
 import { FaChartBar, FaVideo, FaProjectDiagram, FaFileAlt, FaAtom, FaStar, FaRobot, FaGlobe, FaHandRock, FaCloudSun, FaFutbol } from 'react-icons/fa'
 import { IconType } from 'react-icons'
 import { highlightData } from '../utils/highlightData'
+import { siteOwner } from '@/site.config'
 import { publicationVenueColors, terminalPalette } from '@/config/theme'
 
 /* ── Emoji → Icon mapping ─────────────────────────────────────── */
@@ -60,7 +60,6 @@ const blink = keyframes`
 const PublicationsTerminal: React.FC = () => {
   const { colorMode } = useColorMode()
   const isDark = colorMode === 'dark'
-  const { publications, siteOwner } = useLocalizedData()
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedYear, setSelectedYear] = useState<string>('all')
   const [selectedVenue, setSelectedVenue] = useState<string>('all')
@@ -103,7 +102,7 @@ const PublicationsTerminal: React.FC = () => {
   }, [])
   
   // Get statistics
-  const stats = useMemo(() => getPublicationStats(), [publications])
+  const stats = useMemo(() => getPublicationStats(), [])
   
   // Filter publications
   const filteredPublications = useMemo(() => {
@@ -137,13 +136,13 @@ const PublicationsTerminal: React.FC = () => {
     })
     
     return filtered
-  }, [publications, searchQuery, selectedYear, selectedVenue])
+  }, [searchQuery, selectedYear, selectedVenue])
   
   // Get unique years for filter
   const availableYears = useMemo(() => {
     const years = [...new Set(publications.map(p => p.year))].sort((a, b) => b - a)
     return years
-  }, [publications])
+  }, [])
   
   // Toggle expanded state
   const toggleExpanded = (id: string) => {

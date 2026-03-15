@@ -1,9 +1,7 @@
 import { Box, VStack, Heading, Text, useColorModeValue, Link, HStack, Container, Badge, Flex, Image, Collapse, useDisclosure, Modal, ModalOverlay, ModalContent, ModalBody, ModalCloseButton } from '@chakra-ui/react'
 import { useMemo } from 'react'
-import { useTranslation } from 'react-i18next'
-import { institutionLogos } from '../data'
-import { selectedPublicationIds } from '@/site.config'
-import { useLocalizedData } from '@/hooks/useLocalizedData'
+import { research, experience, news, about, publications, institutionLogos } from '../data'
+import { siteConfig, selectedPublicationIds } from '@/site.config'
 import DynamicIcon from './DynamicIcon'
 
 // Import sub-components
@@ -51,7 +49,6 @@ const PubLink = ({ href, icon, label }: { href: string; icon: string; label: str
 );
 
 const PublicationCard = ({ pub }: { pub: any }) => {
-  const { t } = useTranslation();
   const { isOpen: isAbstractOpen, onToggle: onToggleAbstract } = useDisclosure();
   const { isOpen: isImageOpen, onOpen: onImageOpen, onClose: onImageClose } = useDisclosure();
   const borderColor = useColorModeValue('gray.200', 'gray.700');
@@ -184,7 +181,7 @@ const PublicationCard = ({ pub }: { pub: any }) => {
                 ))}
                 {pub.isCoFirst && (
                   <Text fontSize="2xs" color={useColorModeValue('gray.400', 'gray.500')} fontStyle="italic">
-                    {t('about.equalContribution')}
+                    * equal contribution
                   </Text>
                 )}
               </HStack>
@@ -196,12 +193,12 @@ const PublicationCard = ({ pub }: { pub: any }) => {
 
           {/* Links */}
           <HStack spacing={1.5} flexWrap="wrap">
-            {pub.links.paper && <PubLink href={pub.links.paper} icon="FaFileAlt" label={t('about.paper')} />}
-            {pub.links.arxiv && <PubLink href={pub.links.arxiv} icon="SiArxiv" label={t('about.arXiv')} />}
-            {pub.links.projectPage && <PubLink href={pub.links.projectPage} icon="FaGlobe" label={t('about.project')} />}
-            {pub.links.code && <PubLink href={pub.links.code} icon="FaGithub" label={t('about.code')} />}
-            {pub.links.demo && <PubLink href={pub.links.demo} icon="FaPlay" label={t('about.demo')} />}
-            {pub.links.dataset && <PubLink href={pub.links.dataset} icon="FaDatabase" label={t('about.dataset')} />}
+            {pub.links.paper && <PubLink href={pub.links.paper} icon="FaFileAlt" label="Paper" />}
+            {pub.links.arxiv && <PubLink href={pub.links.arxiv} icon="SiArxiv" label="arXiv" />}
+            {pub.links.projectPage && <PubLink href={pub.links.projectPage} icon="FaGlobe" label="Project" />}
+            {pub.links.code && <PubLink href={pub.links.code} icon="FaGithub" label="Code" />}
+            {pub.links.demo && <PubLink href={pub.links.demo} icon="FaPlay" label="Demo" />}
+            {pub.links.dataset && <PubLink href={pub.links.dataset} icon="FaDatabase" label="Dataset" />}
             {pub.abstract && (
               <HStack
                 as="button"
@@ -219,7 +216,7 @@ const PublicationCard = ({ pub }: { pub: any }) => {
                 onClick={onToggleAbstract}
               >
                 <DynamicIcon name="FaChevronRight" boxSize={2.5} style={{ transform: isAbstractOpen ? 'rotate(90deg)' : 'none', transition: 'transform 0.15s' }} />
-                <Text>{t('about.abstract')}</Text>
+                <Text>Abstract</Text>
               </HStack>
             )}
           </HStack>
@@ -284,9 +281,7 @@ const PublicationCard = ({ pub }: { pub: any }) => {
   );
 };
 
-function About() {
-  const { t } = useTranslation();
-  const { research, experience, news, about, publications, siteConfig } = useLocalizedData();
+export default function About() {
   // Sort news items by date (newest first)
   const sortedNews = useMemo(() => {
     return [...news].sort((a, b) => {
@@ -299,7 +294,7 @@ function About() {
 
   const selectedPublications = useMemo(
     () => publications.filter((pub) => selectedPublicationIds.has(pub.id)),
-    [publications]
+    []
   );
 
   return (
@@ -321,8 +316,8 @@ function About() {
               <Box w="full">
                 <Flex align="center" gap={3} mb={4}>
                   <Box h="2px" w="20px" bg="cyan.400" borderRadius="full" flexShrink={0} />
-                  <Heading size="md" fontWeight="semibold">{t('about.recentUpdates')}</Heading>
-                  <Badge colorScheme="green" variant="subtle" fontSize="2xs" fontFamily="mono">{t('about.news')}</Badge>
+                  <Heading size="md" fontWeight="semibold">Recent Updates</Heading>
+                  <Badge colorScheme="green" variant="subtle" fontSize="2xs" fontFamily="mono">News</Badge>
                   <Box flex="1" h="1px" bg={useColorModeValue('gray.200', 'gray.700')} />
                 </Flex>
 
@@ -335,7 +330,7 @@ function About() {
                 <Box w="full">
                   <Flex align="center" gap={3} mb={[3, 4]}>
                     <Box h="2px" w="20px" bg="cyan.400" borderRadius="full" flexShrink={0} />
-                    <Heading size="md" fontWeight="semibold">{t('about.selectedPublications')}</Heading>
+                    <Heading size="md" fontWeight="semibold">Selected Publications</Heading>
                     <Box flex="1" h="1px" bg={useColorModeValue('gray.200', 'gray.700')} />
                   </Flex>
                   
@@ -354,7 +349,7 @@ function About() {
                           transition="all 0.15s"
                           _hover={{ color: 'cyan.400' }}
                         >
-                          <Text>{t('about.viewAllPublications')}</Text>
+                          <Text>View all publications</Text>
                           <Text>→</Text>
                         </HStack>
                       </Link>
@@ -368,7 +363,7 @@ function About() {
                   <VStack spacing={[4, 5, 6]} align="start" w="full">
                     <Flex align="center" gap={3} w="full">
                       <Box h="2px" w="20px" bg="cyan.400" borderRadius="full" flexShrink={0} />
-                      <Heading size={["sm", "md"]} fontWeight="semibold">{t('about.myJourney')}</Heading>
+                      <Heading size={["sm", "md"]} fontWeight="semibold">My Journey</Heading>
                       <Box flex="1" h="1px" bg={useColorModeValue('gray.200', 'gray.700')} />
                     </Flex>
 
@@ -464,7 +459,7 @@ function About() {
                                 _hover={{ color: 'cyan.400' }}
                                 mt="3px"
                               >
-                                <Text>{t('about.viewAllExperience')}</Text>
+                                <Text>View all experience</Text>
                                 <Text>→</Text>
                               </HStack>
                             </Link>
@@ -528,7 +523,4 @@ function About() {
       </VStack>
     </Box>
   )
-}
-
-export default About
-
+} 
