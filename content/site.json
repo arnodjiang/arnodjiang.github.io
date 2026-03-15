@@ -1,46 +1,49 @@
 {
   "_comment": "Your basic info. Edit the values below, then run: npm run dev",
-
   "name": {
     "full": "Changjiang Jiang",
     "first": "Changjiang",
-    "nickname": "Arnold",
+    "nickname": "Arnod Jiang",
     "last": "Jiang",
     "display": "Changjiang Jiang",
-    "authorVariants": ["Arnold Jiang", "Changjiang Jiang"]
+    "authorVariants": [
+      "Changjiang Jiang"
+    ]
   },
-
-  "title": "I'm a researcher in MLLMs",
-  "avatar": "cookie.jpg",
-
+  "title": "I'm a researcher in MLLMs.",
+  "avatar": "avatar.png",
   "terminal": {
-    "username": "arnold",
+    "username": "Arnod Jiang",
     "rotatingSubtitles": [
-      "fetch some data",
-      "bark at bugs",
-      "sniff out errors",
-      "chase squirrels",
-      "nap on keyboard"
+      "build cool projects",
+      "write some code",
+      "explore AI research",
+      "share knowledge",
+      "learn new things"
     ],
     "skills": [
-      "Fetching", "Sitting", "Rolling Over", "Barking",
-      "Napping", "Treat Detection", "Zoomies", "Tail Wagging"
+      "Python",
+      "TypeScript",
+      "Go",
+      "PyTorch",
+      "React",
+      "ROS2",
+      "Docker",
+      "Kubernetes"
     ],
     "timezone": "America/Los_Angeles"
   },
-
   "contact": {
     "email": "thejiangcj@gmail.com",
-    "academicEmail": "jiangcj@whu.edu.cn",
+    "academicEmail": "thejiangcj@gmail.com",
     "hiringEmail": "thejiangcj@gmail.com",
-    "location": "Wuhan, China"
+    "location": "Hangzhou, China"
   },
-
   "social": {
     "github": "arnodjiang.github.io",
-    "linkedin": "",
+    "linkedin": "http://linkedin.com/in/changjiang-jiang-013b7b379/?skipRedirect=true",
     "medium": "",
-    "googleScholar": "",
+    "googleScholar": "https://scholar.google.com/citations?view_op=list_works&hl=zh-CN&hl=zh-CN&user=cr5ZaY0AAAAJ",
     "twitter": "",
     "youtube": "",
     "bilibili": "",
@@ -48,31 +51,29 @@
     "csdn": "",
     "blog": ""
   },
-
-  "pets": [
-    {
-      "name": "Lucas (Lulu)",
-      "emoji": "🐱",
-      "image": "/images/lulu.jpg",
-      "title": "Best Buddy",
-      "description": "Cookie's Ragdoll cat brother and best friend. Partners in crime since day one."
-    }
-  ],
-
+  "pets": [],
   "features": {
     "publications": true,
     "projects": true,
     "articles": true,
     "experience": true,
     "news": true,
-    "pets": true,
-    "guide": true
+    "pets": false,
+    "guide": false
   },
-
   "heroSocialIcons": [
-    { "platform": "twitter", "icon": "SiX", "label": "X", "color": "#000" },
-    { "platform": "youtube", "icon": "FaYoutube", "label": "YouTube", "color": "#FF0000" }
+    {
+      "platform": "github",
+      "icon": "FaGithub",
+      "label": "GitHub",
+      "color": "#333"
+    },
+    {
+      "platform": "linkedin",
+      "icon": "FaLinkedin",
+      "label": "LinkedIn",
+      "color": "#0A66C2"
+    }
   ],
-
-  "selectedPublicationIds": ["napcon2025-nap-optimization", "fetchml2024-trajectory"]
+  "selectedPublicationIds": []
 }
