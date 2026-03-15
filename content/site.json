@@ -15,21 +15,10 @@
   "terminal": {
     "username": "Arnod Jiang",
     "rotatingSubtitles": [
-      "build cool projects",
-      "write some code",
-      "explore AI research",
-      "share knowledge",
-      "learn new things"
+      "build cool projects"
     ],
     "skills": [
-      "Python",
-      "TypeScript",
-      "Go",
-      "PyTorch",
-      "React",
-      "ROS2",
-      "Docker",
-      "Kubernetes"
+      "MLLMs"
     ],
     "timezone": "America/Los_Angeles"
   },
@@ -75,5 +64,7 @@
       "color": "#0A66C2"
     }
   ],
-  "selectedPublicationIds": []
+  "selectedPublicationIds": [
+    "emnlp2025findings-tabdsr"
+  ]
 }
