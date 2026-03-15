@@ -31,14 +31,12 @@ jobs:
         run: npm ci
 
       - name: Build
-        run: 
-          npm install && npm run build
+        run: ls && npm install && npm run build
         env:
           BASE_URL: /
 
       - name: Ensure SPA fallback and .nojekyll
-        run:
-          cp ./dist/index.html ./dist/404.html && touch ./dist/.nojekyll
+        run: cp ./dist/index.html ./dist/404.html && touch ./dist/.nojekyll
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
