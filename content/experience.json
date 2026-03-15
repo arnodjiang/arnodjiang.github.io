@@ -1,0 +1,68 @@
+{
+  "education": {
+    "courses": [
+      {
+        "course": "Master of Goodgirl Sciences",
+        "institution": "The Couch Lab",
+        "year": "2024-2026"
+      },
+      {
+        "course": "Bachelor of Fetching Arts",
+        "institution": "Goodgirl Obedience School",
+        "year": "2020-2024"
+      }
+    ]
+  },
+  "reviewing": [
+    { "venue": "International Conference on Treat Fairness 2026", "role": "Reviewer" },
+    { "venue": "Workshop on Squirrel Detection 2025", "role": "Reviewer" }
+  ],
+  "timeline": [
+    {
+      "title": "Senior Nap Researcher",
+      "company": "The Couch Lab",
+      "companyUrl": "https://h-freax.github.io/TermHub",
+      "location": "Living Room",
+      "start": "2024-09-01",
+      "category": "research",
+      "roleType": "research",
+      "isCurrent": true,
+      "summary": "Focus: nap optimization and treat-driven reinforcement learning.",
+      "highlights": [
+        "Achieved 99.7% nap success rate across all couch positions.",
+        "Discovered that belly rubs improve nap quality by 40%.",
+        "Co-authored a paper on optimal treat distribution timing."
+      ]
+    },
+    {
+      "title": "Junior Fetch Intern",
+      "company": "Backyard Research Institute",
+      "companyUrl": "https://h-freax.github.io/TermHub",
+      "location": "The Backyard",
+      "start": "2023-01-15",
+      "end": "2024-05-20",
+      "category": "research",
+      "roleType": "research",
+      "highlights": [
+        "Tracked 500+ squirrels using advanced sniffing algorithms.",
+        "Optimized fetch return time by 30% through tail-wagging aerodynamics.",
+        "Won Best Zoomies Award at the annual backyard symposium."
+      ]
+    },
+    {
+      "title": "Treat Tester Intern",
+      "company": "Barkington Snacks Co.",
+      "companyUrl": "https://h-freax.github.io/TermHub",
+      "location": "Kitchen",
+      "start": "2025-06-01",
+      "end": "2025-08-31",
+      "category": "industry",
+      "roleType": "sde",
+      "highlights": [
+        "Evaluated 200+ treat varieties across taste, crunch, and smell dimensions.",
+        "Reduced treat waste by 100% (ate everything).",
+        "Developed an internal bark-to-text system for treat requests."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+[
+  {
+    "type": "publication",
+    "badge": "Publication",
+    "icon": "FaFileAlt",
+    "iconColor": "blue.400",
+    "title": "Paper on nap optimization accepted at NapCon 2025",
+    "description": "Cookie's paper \"Optimal Nap Scheduling on Multi-Cushion Couches\" has been accepted at NapCon 2025.",
+    "date": "Dec 2025",
+    "sortDate": "2025-12-01",
+    "links": [
+      { "text": "Paper", "url": "https://h-freax.github.io/TermHub", "icon": "FaFilePdf" }
+    ]
+  },
+  {
+    "type": "talk",
+    "badge": "Talk",
+    "icon": "FaMicrophone",
+    "iconColor": "purple.400",
+    "title": "Invited bark at International Squirrel Tracking Workshop",
+    "description": "Presented on real-time squirrel detection using advanced sniffing algorithms.",
+    "date": "Mar 2025",
+    "sortDate": "2025-03-10",
+    "links": [
+      { "text": "Slides", "url": "https://h-freax.github.io/TermHub", "icon": "FaDesktop" }
+    ]
+  },
+  {
+    "type": "release",
+    "badge": "Release",
+    "icon": "FaRocket",
+    "iconColor": "green.400",
+    "title": "FetchQL v1.0 released",
+    "description": "Released FetchQL, an open-source ball trajectory prediction library achieving 95% catch rate.",
+    "date": "Jul 2024",
+    "sortDate": "2024-07-01",
+    "links": [
+      { "text": "GitHub", "url": "https://h-freax.github.io/TermHub", "icon": "FaGithub" }
+    ]
+  }
+]

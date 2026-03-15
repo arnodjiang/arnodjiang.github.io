@@ -1,0 +1,27 @@
+[
+  {
+    "title": "Best Zoomies Award at the Annual Backyard Symposium",
+    "org": "Backyard Research Institute",
+    "date": "Dec 2024",
+    "kind": "competition"
+  },
+  {
+    "title": "1st Place in the Neighborhood Fetch Tournament",
+    "org": "Dog Park Athletic Association",
+    "date": "Apr 2024",
+    "kind": "hackathon"
+  },
+  {
+    "title": "Good Girl Fellowship",
+    "org": "National Treat Foundation",
+    "date": "Sep 2023",
+    "kind": "scholarship",
+    "link": "https://h-freax.github.io/TermHub"
+  },
+  {
+    "title": "Top Sniffer (top 5% of graduating class)",
+    "org": "Goodgirl Obedience School",
+    "date": "May 2022",
+    "kind": "honor"
+  }
+]
