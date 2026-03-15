@@ -38,7 +38,7 @@ jobs:
           BASE_URL: /
 
       - name: Ensure SPA fallback and .nojekyll
-        run: |
+        run:
           cp ./dist/index.html ./dist/404.html
           touch ./dist/.nojekyll
 
