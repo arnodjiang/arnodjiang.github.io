@@ -1,10 +1,11 @@
 import React, { useEffect, useState, useCallback, useMemo } from 'react'
 import { Box, HStack, Text, Link, Flex, useColorMode, Collapse, useBreakpointValue } from '@chakra-ui/react'
 import { keyframes } from '@emotion/react'
+import { useTranslation } from 'react-i18next'
 import DynamicIcon from '../DynamicIcon'
 import { NewsItem } from '../../types'
 import { highlightData } from '../../utils/highlightData'
-import { siteOwner } from '@/site.config'
+import { useLocalizedData } from '@/hooks/useLocalizedData'
 import { terminalPalette } from '@/config/theme'
 
 interface NewsTimelineProps {
@@ -107,6 +108,8 @@ const researchStatuses = [
 const NewsTimeline: React.FC<NewsTimelineProps> = ({ news, showHeader: _showHeader = false }) => {
   const { colorMode } = useColorMode();
   const isDark = colorMode === 'dark';
+  const { t } = useTranslation();
+  const { siteOwner } = useLocalizedData();
   const [currentTime, setCurrentTime] = useState(new Date());
   const [expandedItems, setExpandedItems] = useState<Record<number, boolean>>({});
   const [hoveredItem, setHoveredItem] = useState<number | null>(null);
@@ -270,7 +273,7 @@ const NewsTimeline: React.FC<NewsTimelineProps> = ({ news, showHeader: _showHead
         <>
           {withoutEllipsis}{' '}
           <Box as="span" color={termCommand} fontWeight="medium" display="inline">
-            [+more]
+            {t('newsTimeline.more')}
           </Box>
         </>
       );
@@ -293,13 +296,13 @@ const NewsTimeline: React.FC<NewsTimelineProps> = ({ news, showHeader: _showHead
   }, [isNarrowScreen]);
   
   // Interaction tier for title bar right side
-  const interactionTier = interactions >= 25 ? { label: "SINGULARITY", isRainbow: true, color: termHighlight }
-    : interactions >= 18 ? { label: "OVERCLOCKED", isRainbow: false, color: termWarning }
-    : interactions >= 12 ? { label: "DEEP_FOCUS", isRainbow: false, color: termParam }
-    : interactions >= 8 ? { label: "ENGAGED", isRainbow: false, color: termSuccess }
-    : interactions >= 5 ? { label: "CURIOUS", isRainbow: false, color: termCommand }
-    : interactions >= 2 ? { label: "SCANNING...", isRainbow: false, color: termInfo }
-    : { label: "IDLE", isRainbow: false, color: termSecondary };
+  const interactionTier = interactions >= 25 ? { label: t('interactionTier.singularity'), isRainbow: true, color: termHighlight }
+    : interactions >= 18 ? { label: t('interactionTier.overclocked'), isRainbow: false, color: termWarning }
+    : interactions >= 12 ? { label: t('interactionTier.deepFocus'), isRainbow: false, color: termParam }
+    : interactions >= 8 ? { label: t('interactionTier.engaged'), isRainbow: false, color: termSuccess }
+    : interactions >= 5 ? { label: t('interactionTier.curious'), isRainbow: false, color: termCommand }
+    : interactions >= 2 ? { label: t('interactionTier.scanning'), isRainbow: false, color: termInfo }
+    : { label: t('interactionTier.idle'), isRainbow: false, color: termSecondary };
 
   // Current research status with resolved color
   const currentResearch = researchStatuses[researchStatusIndex];
@@ -515,7 +518,7 @@ const NewsTimeline: React.FC<NewsTimelineProps> = ({ news, showHeader: _showHead
             <Text color={termSuccess} fontWeight="bold" display={["none", "inline"]}>sort</Text>
             <Text color={termCommand} display={["none", "inline"]}>-r</Text>
             <Text color={tc.command} fontStyle="italic" display={["none", "none", "inline"]} opacity={0.7}>
-              # click rows to expand
+              {t('newsTimeline.clickToExpand')}
             </Text>
           </Flex>
         </Box>
@@ -528,16 +531,16 @@ const NewsTimeline: React.FC<NewsTimelineProps> = ({ news, showHeader: _showHead
             fontSize={["3xs", "2xs", "xs"]}
             fontWeight="bold"
           >
-            <Text w={dateColumnWidth} color={termHighlight} isTruncated>{isVerySmallScreen ? "TIME" : "TIMESTAMP"}</Text>
-            <Text w={typeColumnWidth} color={termParam} isTruncated>{isVerySmallScreen ? "CAT" : "CATEGORY"}</Text>
-            <Text w={idColumnWidth} color={termInfo} display={["none", "none", "block"]}>PID</Text>
+            <Text w={dateColumnWidth} color={termHighlight} isTruncated>{isVerySmallScreen ? t('newsTimeline.time') : t('newsTimeline.timestamp')}</Text>
+            <Text w={typeColumnWidth} color={termParam} isTruncated>{isVerySmallScreen ? t('newsTimeline.cat') : t('newsTimeline.category')}</Text>
+            <Text w={idColumnWidth} color={termInfo} display={["none", "none", "block"]}>{t('newsTimeline.pid')}</Text>
             <Text flex="1">
               <Box as="span" color={termSuccess}>MEMORY</Box>
               <Box as="span" color={termSecondary}>.</Box>
               <Box as="span" color={termCommand}>DUMP</Box>
             </Text>
-            <Text w={linksColumnWidth} color={termWarning} display={["none", "block"]}>LINKS</Text>
-            <Text w={controlColumnWidth} color={termPrompt} textAlign="center">{isVerySmallScreen ? "+" : "CTRL"}</Text>
+            <Text w={linksColumnWidth} color={termWarning} display={["none", "block"]}>{t('newsTimeline.links')}</Text>
+            <Text w={controlColumnWidth} color={termPrompt} textAlign="center">{isVerySmallScreen ? "+" : t('newsTimeline.ctrl')}</Text>
           </Flex>
 
           {/* Table rows */}
@@ -626,7 +629,7 @@ const NewsTimeline: React.FC<NewsTimelineProps> = ({ news, showHeader: _showHead
                       {item.links.length > (isSmallScreen ? 2 : 3) && <Text color={termInfo}>+{item.links.length - (isSmallScreen ? 2 : 3)}</Text>}
                     </HStack>
                   ) : (
-                    <Text color={termInfo}>/dev/null</Text>
+                    <Text color={termInfo}>{t('newsTimeline.devNull')}</Text>
                   )}
                 </Flex>
                 <Flex w={controlColumnWidth} align="center" justify="center">
@@ -800,10 +803,10 @@ const NewsTimeline: React.FC<NewsTimelineProps> = ({ news, showHeader: _showHead
             fontStyle="italic"
           >
             {interactions >= 6
-              ? '// you seem curious :)'
+              ? t('newsTimeline.easterEgg3')
               : interactions >= 3
-                ? '// keep exploring...'
-                : '// TODO: refactor brain.js'}
+                ? t('newsTimeline.easterEgg2')
+                : t('newsTimeline.easterEgg1')}
           </Text>
         )}
       </Flex>

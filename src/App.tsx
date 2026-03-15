@@ -5,6 +5,7 @@ import Layout from './components/Layout'
 import Home from './components/Home'
 import { siteConfig } from './site.config'
 import './styles/globals.css'
+import './i18n'
 
 /* Lazy-load page components — only bundled when the feature is enabled */
 import Publications from './components/Publications'

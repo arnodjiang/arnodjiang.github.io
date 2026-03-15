@@ -5,12 +5,10 @@ import {
 } from '@chakra-ui/react'
 import { keyframes } from '@emotion/react'
 import { FaChevronDown } from 'react-icons/fa'
+import { useTranslation } from 'react-i18next'
 import type { RoleType } from '../types'
-import { experienceTimeline } from '../data'
 import { highlightData } from '../utils/highlightData'
-import { experience as experienceData } from '../data'
-import { institutionLogos } from '../data'
-import { siteOwner } from '@/site.config'
+import { useLocalizedData } from '@/hooks/useLocalizedData'
 import { terminalPalette } from '@/config/theme'
 
 /* ── Keyframes ─────────────────────────────────────────────────── */
@@ -24,19 +22,17 @@ const categoryFilter: Record<string, FilterType> = {
   industry: 'industry', leadership: 'academic',
 }
 
-const roleTypeConfig: Record<RoleType, { label: string; color: (dk: boolean) => string }> = {
-  research:   { label: 'Research',   color: dk => dk ? '#b48ead' : '#9a56a2' },
-  mle:        { label: 'MLE',        color: dk => dk ? '#88c0d0' : '#2a769c' },
-  sde:        { label: 'SDE',        color: dk => dk ? '#d08770' : '#b35a2e' },
-  teaching:   { label: 'Teaching',   color: dk => dk ? '#a3be8c' : '#34744e' },
-  leadership: { label: 'Leadership', color: dk => dk ? '#ebcb8b' : '#c47d46' },
+const roleTypeConfig: Record<RoleType, { labelKey: string; color: (dk: boolean) => string }> = {
+  research:   { labelKey: 'experience.roleResearch',   color: dk => dk ? '#b48ead' : '#9a56a2' },
+  mle:        { labelKey: 'experience.roleMLE',        color: dk => dk ? '#88c0d0' : '#2a769c' },
+  sde:        { labelKey: 'experience.roleSDE',        color: dk => dk ? '#d08770' : '#b35a2e' },
+  teaching:   { labelKey: 'experience.roleTeaching',   color: dk => dk ? '#a3be8c' : '#34744e' },
+  leadership: { labelKey: 'experience.roleLeadership', color: dk => dk ? '#ebcb8b' : '#c47d46' },
 }
 
-/* ── Logos (from shared data layer) ────────────────────────────── */
-const localLogos = institutionLogos
-
-const getIconUrl = (url?: string, company?: string) => {
-  if (company && localLogos[company]) return localLogos[company]
+/* ── Logos helper ────────────────────────────────────────────── */
+const getIconUrl = (url?: string, company?: string, logos?: Record<string, string>) => {
+  if (company && logos?.[company]) return logos[company]
   if (url) {
     try { return `https://www.google.com/s2/favicons?domain=${new URL(url).hostname}&sz=64` }
     catch { /* fall through */ }
@@ -45,12 +41,13 @@ const getIconUrl = (url?: string, company?: string) => {
 }
 
 /* ── Helpers ────────────────────────────────────────────────────── */
-const fmtDate = (v?: string) => {
-  if (!v) return 'Present'
-  if (v.toLowerCase() === 'present') return 'Present'
+// fmtDate is called inside the component where t() is available
+const fmtDateFn = (v: string | undefined, presentLabel: string, lang: string) => {
+  if (!v) return presentLabel
+  if (v.toLowerCase() === 'present') return presentLabel
   const d = new Date(v)
   if (Number.isNaN(d.getTime())) return v
-  return d.toLocaleDateString('en-US', { month: 'short', year: 'numeric' })
+  return d.toLocaleDateString(lang === 'zh' ? 'zh-CN' : 'en-US', { month: 'short', year: 'numeric' })
 }
 
 /* ── Component ─────────────────────────────────────────────────── */
@@ -58,6 +55,9 @@ const Experience: React.FC = () => {
   const { colorMode } = useColorMode()
   const isDark = colorMode === 'dark'
   const isMobile = useBreakpointValue({ base: true, md: false })
+  const { t, i18n } = useTranslation()
+  const { experienceTimeline, experience: experienceData, institutionLogos, siteOwner } = useLocalizedData()
+  const fmtDate = (v?: string) => fmtDateFn(v, t('experience.present'), i18n.language)
 
   const [filter, setFilter] = useState<FilterType>('all')
   const [expandedItems, setExpandedItems] = useState<Record<string, boolean>>({})
@@ -88,7 +88,7 @@ const Experience: React.FC = () => {
         if (a.isCurrent !== b.isCurrent) return a.isCurrent ? -1 : 1
         return new Date(b.start).getTime() - new Date(a.start).getTime()
       })
-  }, [])
+  }, [experienceTimeline])
 
   const filtered = useMemo(() => {
     if (filter === 'all') return sorted
@@ -241,12 +241,12 @@ const Experience: React.FC = () => {
               <Text as="span" color={termPrompt} fontWeight="bold">{siteOwner.terminalUsername}</Text>
               <Text as="span" color={tc.border}> · </Text>
               <Text as="span" color={termHighlight}>{stats.total}</Text>
-              <Text as="span"> roles across academia & industry, </Text>
-              <Text as="span" color={termSuccess}>{stats.current} currently active</Text>
+              <Text as="span"> {t('experience.rolesAcross')} </Text>
+              <Text as="span" color={termSuccess}>{stats.current} {t('experience.currentlyActive')}</Text>
               <Text as="span" color={tc.border}> · </Text>
-              <Text as="span" color={termParam}>{stats.academic} research</Text>
+              <Text as="span" color={termParam}>{stats.academic} {t('experience.research')}</Text>
               <Text as="span">, </Text>
-              <Text as="span" color={termWarning}>{stats.industry} industry</Text>
+              <Text as="span" color={termWarning}>{stats.industry} {t('experience.industry')}</Text>
             </Text>
             <Text color={termCommand} flexShrink={0}>~/career</Text>
           </Flex>
@@ -255,12 +255,12 @@ const Experience: React.FC = () => {
           <Box px={[3, 5]} py={3} bg={termBg} borderBottom={`1px solid ${termBorder}`}>
             <Flex align="center" gap={2} mb={2.5}>
               <Box w="14px" h="3px" borderRadius="full" bg={termCommand} />
-              <Text fontSize="xs" fontWeight="bold" color={termInfo} letterSpacing="0.06em">EDUCATION</Text>
+              <Text fontSize="xs" fontWeight="bold" color={termInfo} letterSpacing="0.06em">{t('experience.education')}</Text>
               <Box flex="1" h="1px" bg={termBorder} />
             </Flex>
             <VStack align="stretch" spacing={1.5} pl={1}>
               {education.map(edu => {
-                const logo = localLogos[edu.institution]
+                const logo = institutionLogos[edu.institution]
                 return (
                   <HStack key={edu.course} fontSize="xs" spacing={2}>
                     {logo ? (
@@ -304,7 +304,7 @@ const Experience: React.FC = () => {
                   transition="all 0.15s"
                   _hover={{ bg: isDark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.04)' }}
                 >
-                  {f === 'all' ? 'All' : f.charAt(0).toUpperCase() + f.slice(1)} ({count})
+                  {f === 'all' ? t('experience.filterAll') : f === 'academic' ? t('experience.filterAcademic') : t('experience.filterIndustry')} ({count})
                 </Text>
               )
             })}
@@ -333,11 +333,11 @@ const Experience: React.FC = () => {
                     color={group.year === 'Present' ? termSuccess : termHighlight}
                     letterSpacing="0.04em"
                   >
-                    {group.year === 'Present' ? 'PRESENT' : group.year}
+                    {group.year === 'Present' ? t('experience.present').toUpperCase() : group.year}
                   </Text>
                   <Text fontSize="2xs" color={termSecondary}>
                     {group.year === 'Present'
-                      ? `${group.items.length} active`
+                      ? `${group.items.length} ${t('experience.active')}`
                       : `${group.items.length}`}
                   </Text>
                   <Box flex="1" h="1px" bg={termBorder} />
@@ -350,7 +350,7 @@ const Experience: React.FC = () => {
                   const rt: RoleType = exp.roleType ?? (categoryFilter[exp.category] === 'industry' ? 'sde' : 'research')
                   const rtCfg = roleTypeConfig[rt]
                   const rtColor = rtCfg.color(isDark)
-                  const icon = getIconUrl(exp.companyUrl, exp.company)
+                  const icon = getIconUrl(exp.companyUrl, exp.company, institutionLogos)
 
                   return (
                     <Box
@@ -415,7 +415,7 @@ const Experience: React.FC = () => {
                               borderRadius="sm"
                               bg={`${rtColor}15`}
                             >
-                              {rtCfg.label}
+                              {t(rtCfg.labelKey)}
                             </Text>
                             {exp.isCurrent && (
                               <Box w="6px" h="6px" borderRadius="full" bg={termSuccess} flexShrink={0} />
@@ -499,7 +499,7 @@ const Experience: React.FC = () => {
 
             {filtered.length === 0 && (
               <Box px={5} py={8} textAlign="center">
-                <Text color={termSecondary} fontSize="sm">No positions match the current filter.</Text>
+                <Text color={termSecondary} fontSize="sm">{t('experience.noPositions')}</Text>
               </Box>
             )}
           </Box>
@@ -509,7 +509,7 @@ const Experience: React.FC = () => {
             <Box px={[3, 5]} py={4} bg={termBg} borderTop={`1px solid ${termBorder}`}>
               <Flex align="center" gap={2} mb={3}>
                 <Box w="14px" h="3px" borderRadius="full" bg={tc.param} />
-                <Text fontSize="xs" fontWeight="bold" color={termInfo} letterSpacing="0.06em">ACADEMIC REVIEWING</Text>
+                <Text fontSize="xs" fontWeight="bold" color={termInfo} letterSpacing="0.06em">{t('experience.academicReviewing')}</Text>
                 <Text fontSize="2xs" color={termSecondary}>{reviewingItems.length}</Text>
                 <Box flex="1" h="1px" bg={termBorder} />
               </Flex>
@@ -561,7 +561,7 @@ const Experience: React.FC = () => {
               value={command}
               onChange={e => setCommand(e.target.value)}
               onKeyPress={e => { if (e.key === 'Enter') handleCommand(command) }}
-              placeholder="type 'help'"
+              placeholder={t('experience.typeHelp')}
               size="xs"
               variant="unstyled"
               color={termText}

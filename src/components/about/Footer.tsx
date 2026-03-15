@@ -1,8 +1,11 @@
 import React from 'react'
 import { Box, Container, VStack, HStack, Text, Link, Image, useColorModeValue } from '@chakra-ui/react'
-import { siteOwner } from '@/site.config'
+import { useTranslation } from 'react-i18next'
+import { useLocalizedData } from '@/hooks/useLocalizedData'
 
 const Footer: React.FC = () => {
+  const { t } = useTranslation()
+  const { siteOwner } = useLocalizedData()
   const footerBg = useColorModeValue('gray.50', 'gray.900')
   const textColor = useColorModeValue('gray.600', 'gray.400')
 
@@ -38,7 +41,7 @@ const Footer: React.FC = () => {
             color={textColor}
             fontSize={["xs", "sm"]}
           >
-            <Text>Powered by</Text>
+            <Text>{t('footer.poweredBy')}</Text>
             <Link
               href="https://github.com/H-Freax/TermHub"
               isExternal

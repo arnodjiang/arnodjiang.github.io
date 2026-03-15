@@ -1,8 +1,9 @@
 import React from 'react'
 import { Box, VStack, HStack, Text, useColorModeValue, Flex, Popover, PopoverTrigger, PopoverContent, PopoverArrow, PopoverBody, Container, Heading } from '@chakra-ui/react'
+import { useTranslation } from 'react-i18next'
 import DynamicIcon from './DynamicIcon'
 import type { Award } from '../types'
-import { awards } from '../data'
+import { useLocalizedData } from '@/hooks/useLocalizedData'
 
 const iconFor = (a: Award): string => {
   if (a.kind === 'grant') return 'FaCoins'
@@ -24,19 +25,20 @@ const iconFor = (a: Award): string => {
   return 'FaCoins'
 }
 
-const kindMeta: Record<string, { label: string; color: [string, string] }> = {
-  grant: { label: 'Grant', color: ['yellow.500', 'yellow.300'] },
-  hackathon: { label: 'Hackathon', color: ['purple.500', 'purple.300'] },
-  travel: { label: 'Travel', color: ['blue.400', 'blue.300'] },
-  scholarship: { label: 'Scholarship', color: ['purple.500', 'purple.300'] },
-  honor: { label: 'Honor', color: ['green.500', 'green.300'] },
-  employment: { label: 'Employment', color: ['blue.500', 'blue.300'] },
-  competition: { label: 'Competition', color: ['orange.400', 'orange.300'] },
-  innovation: { label: 'Innovation', color: ['cyan.500', 'cyan.300'] },
-  other: { label: 'Other', color: ['gray.400', 'gray.500'] },
+const kindMeta: Record<string, { labelKey: string; color: [string, string] }> = {
+  grant: { labelKey: 'awards.grant', color: ['yellow.500', 'yellow.300'] },
+  hackathon: { labelKey: 'awards.hackathon', color: ['purple.500', 'purple.300'] },
+  travel: { labelKey: 'awards.travel', color: ['blue.400', 'blue.300'] },
+  scholarship: { labelKey: 'awards.scholarship', color: ['purple.500', 'purple.300'] },
+  honor: { labelKey: 'awards.honor', color: ['green.500', 'green.300'] },
+  employment: { labelKey: 'awards.employment', color: ['blue.500', 'blue.300'] },
+  competition: { labelKey: 'awards.competition', color: ['orange.400', 'orange.300'] },
+  innovation: { labelKey: 'awards.innovation', color: ['cyan.500', 'cyan.300'] },
+  other: { labelKey: 'awards.other', color: ['gray.400', 'gray.500'] },
 }
 
 const AwardRow = ({ award }: { award: Award }) => {
+  const { t } = useTranslation()
   const borderColor = useColorModeValue('gray.100', 'gray.800')
   const titleColor = useColorModeValue('gray.800', 'gray.100')
   const mutedColor = useColorModeValue('gray.400', 'gray.500')
@@ -72,7 +74,7 @@ const AwardRow = ({ award }: { award: Award }) => {
           {award.date}
         </Text>
         <Text fontSize="2xs" fontFamily="mono" color={kindColor} textTransform="uppercase" letterSpacing="wide">
-          {meta.label}
+          {t(meta.labelKey)}
         </Text>
       </VStack>
     </Flex>
@@ -111,11 +113,13 @@ const AwardRow = ({ award }: { award: Award }) => {
 }
 
 const AccomplishmentsTerminal: React.FC = () => {
+  const { t } = useTranslation()
+  const { awards } = useLocalizedData()
   return (
     <Container maxW={["full", "full", "7xl"]} px={[2, 4, 8]}>
-      <Heading size={["sm", "md"]} mb={3}>Awards & Honors</Heading>
+      <Heading size={["sm", "md"]} mb={3}>{t('about.awardsAndHonors')}</Heading>
       <Text fontSize="xs" color={useColorModeValue('gray.500', 'gray.400')} mb={4}>
-        {awards.length} awards spanning {new Set(awards.map(a => a.kind)).size} categories
+        {awards.length} {t('about.awardsSpanning')} {new Set(awards.map(a => a.kind)).size} {t('about.categories')}
       </Text>
       <VStack spacing={0} align="stretch">
         {awards.map((a, i) => (

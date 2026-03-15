@@ -12,11 +12,11 @@ import {
   FaGithub, FaMedium, FaYoutube, FaExternalLinkAlt,
 } from 'react-icons/fa'
 import { SiZhihu, SiCsdn } from 'react-icons/si'
+import { useTranslation } from 'react-i18next'
 import type { ProjectItem } from '../types'
-import { projects as projectData } from '../data'
 import { withBase } from '@/utils/asset'
 import { highlightData } from '@/utils/highlightData'
-import { siteOwner } from '@/site.config'
+import { useLocalizedData } from '@/hooks/useLocalizedData'
 import { buildCategoryThemes, terminalPalette, type CatTheme } from '@/config/theme'
 
 /* ── Keyframes ─────────────────────────────────────────────────── */
@@ -44,11 +44,11 @@ const buildThemes = (dk: boolean): Record<ProjectItem['category'], CatThemeWithA
 }
 
 /* ── Role config ───────────────────────────────────────────────── */
-const roleConfig: Record<string, { text: string; icon: IconType; color: (d: boolean) => string }> = {
-  independent: { text: 'independent', icon: FaUser,   color: d => d ? '#ebcb8b' : '#c47d46' },
-  lead:        { text: 'lead',        icon: FaCrown,  color: d => d ? '#d08770' : '#b35a2e' },
-  'tech-lead': { text: 'tech-lead',   icon: FaCog,    color: d => d ? '#88c0d0' : '#2a769c' },
-  maintainer:  { text: 'maintainer',  icon: FaSync,   color: d => d ? '#a3be8c' : '#36805a' },
+const roleConfig: Record<string, { textKey: string; icon: IconType; color: (d: boolean) => string }> = {
+  independent: { textKey: 'projects.independent', icon: FaUser,   color: d => d ? '#ebcb8b' : '#c47d46' },
+  lead:        { textKey: 'projects.lead',        icon: FaCrown,  color: d => d ? '#d08770' : '#b35a2e' },
+  'tech-lead': { textKey: 'projects.techLead',    icon: FaCog,    color: d => d ? '#88c0d0' : '#2a769c' },
+  maintainer:  { textKey: 'projects.maintainer',  icon: FaSync,   color: d => d ? '#a3be8c' : '#36805a' },
 }
 
 /* ── Helpers ────────────────────────────────────────────────────── */
@@ -80,11 +80,12 @@ const FlowNode: React.FC<{
   hlc: { num: string; kw: string; str: string }
   onImageClick: (src: string, alt: string) => void
 }> = ({ item, ct, isDark, isLast: _isLast, termText, termSecondary, termMuted, termBorder, hlc, onImageClick }) => {
+  const { t } = useTranslation()
   const [expanded, setExpanded] = useState(false)
   const role = roleConfig[item.role || 'independent']
   const hasImg = !!item.featuredImage
   const res: { label: string; url: string }[] = []
-  if (item.link) res.push({ label: 'Source', url: item.link })
+  if (item.link) res.push({ label: t('projects.source'), url: item.link })
   item.extraLinks?.forEach(l => { if (!res.some(r => r.url === l.url)) res.push(l) })
   const hasExpandable = (item.highlights && item.highlights.length > 0) || item.story
 
@@ -118,7 +119,7 @@ const FlowNode: React.FC<{
           <HStack spacing={1}>
             <Icon as={role.icon} boxSize="9px" color={role.color(isDark)} />
             <Text fontSize="2xs" fontFamily="mono" color={role.color(isDark)} fontWeight="bold">
-              {role.text}
+              {t(role.textKey)}
             </Text>
           </HStack>
           <Text fontSize="2xs" fontFamily="mono" color={termMuted} ml="auto" flexShrink={0}>
@@ -205,7 +206,7 @@ const FlowNode: React.FC<{
                   <Icon as={FaChevronDown} boxSize="8px"
                     transition="transform 0.15s"
                     transform={expanded ? 'rotate(180deg)' : undefined} />
-                  <Text>{expanded ? 'Less' : 'Details'}</Text>
+                  <Text>{expanded ? t('projects.less') : t('projects.details')}</Text>
                 </HStack>
               )}
             </HStack>
@@ -260,6 +261,8 @@ const FlowNode: React.FC<{
 const Projects: React.FC = () => {
   const { colorMode } = useColorMode()
   const isDark = colorMode === 'dark'
+  const { t } = useTranslation()
+  const { projects: projectData, siteOwner } = useLocalizedData()
 
   const [activeTab, setActiveTab] = useState<TabKey>('all')
   const [searchQuery, setSearchQuery] = useState('')
@@ -286,7 +289,7 @@ const Projects: React.FC = () => {
 
   const projects = useMemo<TP[]>(() =>
     projectData.map((p, i) => ({ ...p, id: `p-${i}` }))
-  , [])
+  , [projectData])
 
   /* ── Tabs ── */
   const tabs = useMemo(() => {
@@ -294,9 +297,9 @@ const Projects: React.FC = () => {
     projects.forEach(p => { cnt[p.category] = (cnt[p.category] || 0) + 1 })
     const cats: ProjectItem['category'][] = ['robotics', 'nlp', 'web-app', 'data', 'tooling', 'healthcare']
     return [
-      { key: 'all' as TabKey, icon: FaFolderOpen, label: 'ALL', color: termInfo, count: cnt.all },
+      { key: 'all' as TabKey, icon: FaFolderOpen, label: t('projects.all'), color: termInfo, count: cnt.all },
       ...cats.filter(k => cnt[k] > 0).map(k => ({
-        key: k as TabKey, icon: themes[k].icon, label: themes[k].label,
+        key: k as TabKey, icon: themes[k].icon, label: t(`category.${k}`),
         color: themes[k].color, count: cnt[k],
       })),
     ]
@@ -401,8 +404,8 @@ const Projects: React.FC = () => {
               <Text as="span" color={termPrompt} fontWeight="bold">{siteOwner.terminalUsername}</Text>
               <Text as="span" color={tc.border}> · </Text>
               <Text as="span" color={termHighlight}>{projects.length}</Text>
-              <Text as="span"> projects across robotics, NLP & web, </Text>
-              <Text as="span" color={termPrompt}>{totalIndep} independently built</Text>
+              <Text as="span"> {t('projects.projectsAcross')} </Text>
+              <Text as="span" color={termPrompt}>{totalIndep} {t('projects.independentlyBuilt')}</Text>
             </Text>
             <Text color={termInfo} flexShrink={0}>~/projects/{promptPath === '~' ? 'all' : activeTab}</Text>
           </Flex>
@@ -477,7 +480,7 @@ const Projects: React.FC = () => {
                     </Text>
                     <Box flex="1" h="1px" bg={termBorder} opacity={0.3} />
                     <Text fontSize="2xs" fontFamily="mono" color={termMuted}>
-                      {group.items.length} projects
+                      {group.items.length} {t('projects.projects')}
                     </Text>
                   </HStack>
 
@@ -505,8 +508,8 @@ const Projects: React.FC = () => {
 
             {filtered.length === 0 && (
               <Box px={4} py={8} textAlign="center">
-                <Text color={termHighlight} fontSize="sm">grep: no matches found</Text>
-                <Text color={termSecondary} fontSize="xs" mt={1}>Try adjusting your search or switch tabs.</Text>
+                <Text color={termHighlight} fontSize="sm">{t('projects.noMatches')}</Text>
+                <Text color={termSecondary} fontSize="xs" mt={1}>{t('projects.tryAdjustingSearch')}</Text>
               </Box>
             )}
           </Box>
@@ -518,10 +521,10 @@ const Projects: React.FC = () => {
             flexWrap="wrap" gap={2}
           >
             <HStack spacing={3}>
-              <Text>{filtered.length}/{projects.length} shown</Text>
+              <Text>{filtered.length}/{projects.length} {t('projects.shown')}</Text>
               <HStack spacing={1} color={termHighlight}>
                 <Icon as={FaUser} boxSize="9px" />
-                <Text fontWeight="bold">{filteredIndep} independent</Text>
+                <Text fontWeight="bold">{filteredIndep} {t('projects.independent')}</Text>
               </HStack>
             </HStack>
             <HStack spacing={1}>

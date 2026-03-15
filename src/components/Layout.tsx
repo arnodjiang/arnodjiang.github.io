@@ -1,12 +1,13 @@
 import {
   Box, Flex, IconButton, useColorMode, HStack, Link as ChakraLink, Image,
   useDisclosure, Drawer, DrawerOverlay, DrawerContent, DrawerHeader, DrawerBody,
-  VStack, Divider
+  VStack, Divider, Button
 } from '@chakra-ui/react'
 import { MoonIcon, SunIcon, HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
 import { Link, useLocation } from 'react-router-dom'
 import { FaGithub, FaLinkedin, FaMedium, FaEnvelope } from 'react-icons/fa'
 import { SiGooglescholar } from 'react-icons/si'
+import { useTranslation } from 'react-i18next'
 import { navItems, siteOwner } from '@/site.config'
 
 interface LayoutProps {
@@ -17,6 +18,11 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   const { colorMode, toggleColorMode } = useColorMode()
   const location = useLocation()
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const { t, i18n } = useTranslation()
+
+  const toggleLanguage = () => {
+    i18n.changeLanguage(i18n.language === 'zh' ? 'en' : 'zh')
+  }
 
   const socialLinks = [
     { icon: FaEnvelope, href: `mailto:${siteOwner.contact.email}`, label: 'Email' },
@@ -24,23 +30,23 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     { icon: FaLinkedin, href: siteOwner.social.linkedin, label: 'LinkedIn' },
     { icon: FaMedium, href: siteOwner.social.medium, label: 'Medium' },
     { icon: SiGooglescholar, href: siteOwner.social.googleScholar, label: 'Google Scholar' },
-  ]
+  ].filter(link => link.href)
 
   return (
     <Box minH="100vh" w="100vw" className={colorMode === 'dark' ? 'dark-theme' : ''}>
-      <Box 
-        as="nav" 
+      <Box
+        as="nav"
         py={4}
-        borderBottom="1px solid" 
-        borderColor="var(--border-color)" 
-        position="sticky" 
-        top={0} 
-        bg="var(--bg-color)" 
+        borderBottom="1px solid"
+        borderColor="var(--border-color)"
+        position="sticky"
+        top={0}
+        bg="var(--bg-color)"
         zIndex={1000}
         w="full"
       >
-        <Flex 
-          justify="space-between" 
+        <Flex
+          justify="space-between"
           align="center"
           w="full"
           px={4}
@@ -49,7 +55,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           {/* Mobile: hamburger */}
           <Box display={{ base: 'block', md: 'none' }}>
             <IconButton
-              aria-label="Open navigation menu"
+              aria-label={t('aria.openNav')}
               icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
               onClick={isOpen ? onClose : onOpen}
               variant="ghost"
@@ -85,8 +91,8 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               const isActive = location.pathname === item.path
 
               return (
-                <Link 
-                  key={item.path} 
+                <Link
+                  key={item.path}
                   to={item.path}
                   style={{
                     color: 'var(--text-color)',
@@ -98,7 +104,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                     transition: 'all 0.2s'
                   }}
                 >
-                  {item.label}
+                  {t(item.labelKey)}
                 </Link>
               )
             })}
@@ -106,13 +112,13 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           <HStack spacing={4} display={{ base: 'none', md: 'flex' }}>
             {socialLinks.map((link) => (
               <ChakraLink
-                key={link.href}
+                key={link.label}
                 href={link.href}
                 isExternal
                 color="var(--secondary-text)"
                 p={1.5}
                 borderRadius="md"
-                _hover={{ 
+                _hover={{
                   color: 'var(--accent-color)',
                   transform: 'translateY(-2px)',
                   ...(link.label === 'LinkedIn' || link.label === 'Email'
@@ -121,19 +127,38 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                 }}
                 transition="all 0.2s"
               >
-                <Box 
-                  as={link.icon} 
+                <Box
+                  as={link.icon}
                   fontSize="1.2rem"
                 />
               </ChakraLink>
             ))}
+            {/* Language switcher */}
+            <Button
+              size="xs"
+              variant="ghost"
+              color="var(--text-color)"
+              fontWeight="medium"
+              fontSize="xs"
+              px={2}
+              minW="auto"
+              onClick={toggleLanguage}
+              aria-label={t('aria.toggleLanguage')}
+              _hover={{
+                bg: 'var(--hover-color)',
+                transform: 'translateY(-2px)'
+              }}
+              transition="all 0.2s"
+            >
+              {i18n.language === 'zh' ? 'EN' : '中'}
+            </Button>
             <IconButton
-              aria-label="Toggle color mode"
+              aria-label={t('aria.toggleColorMode')}
               icon={colorMode === 'dark' ? <SunIcon /> : <MoonIcon />}
               onClick={toggleColorMode}
               variant="ghost"
               color="var(--text-color)"
-              _hover={{ 
+              _hover={{
                 bg: 'var(--hover-color)',
                 transform: 'translateY(-2px)'
               }}
@@ -146,7 +171,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         <Drawer isOpen={isOpen} placement="left" onClose={onClose}>
           <DrawerOverlay />
           <DrawerContent bg="var(--bg-color)">
-            <DrawerHeader color="var(--text-color)">Navigation</DrawerHeader>
+            <DrawerHeader color="var(--text-color)">{t('nav.navigation')}</DrawerHeader>
             <DrawerBody>
               <VStack align="stretch" spacing={3}>
                 {navItems.map((item) => {
@@ -161,7 +186,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                       _hover={{ color: 'var(--accent-color)' }}
                       fontWeight={isActive ? 600 : 400}
                     >
-                      {item.label}
+                      {t(item.labelKey)}
                     </ChakraLink>
                   )
                 })}
@@ -171,7 +196,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                 <VStack align="stretch" spacing={2}>
                   {socialLinks.map((link) => (
                     <ChakraLink
-                      key={link.href}
+                      key={link.label}
                       href={link.href}
                       isExternal
                       color="var(--secondary-text)"
@@ -182,13 +207,26 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                   ))}
                 </VStack>
 
-                <IconButton
-                  aria-label="Toggle color mode"
-                  icon={colorMode === 'dark' ? <SunIcon /> : <MoonIcon />}
-                  onClick={toggleColorMode}
-                  variant="outline"
-                  color="var(--text-color)"
-                />
+                <Divider borderColor="var(--border-color)" my={2} />
+
+                <HStack spacing={2}>
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    color="var(--text-color)"
+                    onClick={toggleLanguage}
+                    flex={1}
+                  >
+                    {i18n.language === 'zh' ? 'English' : '中文'}
+                  </Button>
+                  <IconButton
+                    aria-label={t('aria.toggleColorMode')}
+                    icon={colorMode === 'dark' ? <SunIcon /> : <MoonIcon />}
+                    onClick={toggleColorMode}
+                    variant="outline"
+                    color="var(--text-color)"
+                  />
+                </HStack>
               </VStack>
             </DrawerBody>
           </DrawerContent>
@@ -201,4 +239,4 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   )
 }
 
-export default Layout 
+export default Layout

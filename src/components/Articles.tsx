@@ -9,11 +9,11 @@ import {
   FaGithub, FaMedium, FaYoutube, FaExternalLinkAlt,
 } from 'react-icons/fa'
 import { SiZhihu, SiCsdn } from 'react-icons/si'
+import { useTranslation } from 'react-i18next'
 import type { ProjectItem } from '../types'
-import { articles as articleData } from '../data'
 import { highlightData } from '../utils/highlightData'
-import { siteOwner } from '@/site.config'
-import { articleCategoryLabels, articleCategoryColors, terminalPalette } from '@/config/theme'
+import { useLocalizedData } from '@/hooks/useLocalizedData'
+import { articleCategoryColors, terminalPalette } from '@/config/theme'
 
 /* ── Keyframes ─────────────────────────────────────────────────── */
 const blink = keyframes`0%,100%{opacity:1}50%{opacity:0}`
@@ -22,11 +22,11 @@ const blink = keyframes`0%,100%{opacity:1}50%{opacity:0}`
 type CategoryFilter = ProjectItem['category'] | 'all'
 
 /* ── Category config (from config/theme.ts) ──────────────────── */
-const categoryLabels = articleCategoryLabels
 const categoryColors = articleCategoryColors
 
 /* ── Helpers ───────────────────────────────────────────────────── */
 const linkIcon = (url: string): IconType => {
+  if (!url) return FaExternalLinkAlt
   if (url.includes('github.com')) return FaGithub
   if (url.includes('medium.com')) return FaMedium
   if (url.includes('youtu.be') || url.includes('youtube.com')) return FaYoutube
@@ -63,6 +63,8 @@ const getArticleType = (tags?: string[]): string | null => {
 const Articles: React.FC = () => {
   const { colorMode } = useColorMode()
   const isDark = colorMode === 'dark'
+  const { t } = useTranslation()
+  const { articles: articleData, siteOwner } = useLocalizedData()
   const [currentTime, setCurrentTime] = useState(new Date())
   const [expandedItems, setExpandedItems] = useState<Record<string, boolean>>({})
 
@@ -95,7 +97,7 @@ const Articles: React.FC = () => {
 
   const articles = useMemo(() =>
     articleData.map((a, i) => ({ ...a, id: `article-${i}` })),
-  [])
+  [articleData])
 
   const availableCategories = useMemo(() => {
     const set = new Set<ProjectItem['category']>()
@@ -206,8 +208,8 @@ const Articles: React.FC = () => {
               <Text as="span" color={termPrompt} fontWeight="bold">{siteOwner.terminalUsername}</Text>
               <Text as="span" color={tc.border}> · </Text>
               <Text as="span" color={termHighlight}>{articles.length}</Text>
-              <Text as="span"> technical articles & tutorials covering </Text>
-              <Text as="span" color={termCommand}>{availableCategories.length} domains</Text>
+              <Text as="span"> {t('articles.technicalArticles')} </Text>
+              <Text as="span" color={termCommand}>{availableCategories.length} {t('articles.domains')}</Text>
             </Text>
             <Text color={termInfo} flexShrink={0}>~/blog</Text>
           </Flex>
@@ -235,9 +237,9 @@ const Articles: React.FC = () => {
               fontFamily="mono"
               borderRadius="sm"
             >
-              <option value="all">all topics</option>
+              <option value="all">{t('articles.allTopics')}</option>
               {availableCategories.map(c => (
-                <option key={c} value={c}>{categoryLabels[c]}</option>
+                <option key={c} value={c}>{t(`categoryLabel.${c}`)}</option>
               ))}
             </Select>
           </Flex>
@@ -264,7 +266,7 @@ const Articles: React.FC = () => {
                     </Text>
                     <Box flex="1" h="1px" bg={termBorder} opacity={0.3} />
                     <Text fontSize="2xs" fontFamily="mono" color={termMuted}>
-                      {items.length} {items.length === 1 ? 'article' : 'articles'}
+                      {items.length} {items.length === 1 ? t('articles.article') : t('articles.articles')}
                     </Text>
                   </HStack>
 
@@ -318,7 +320,7 @@ const Articles: React.FC = () => {
                               flexShrink={0}
                               justifyContent="center"
                             >
-                              {categoryLabels[item.category].split(' ')[0]}
+                              {t(`categoryLabel.${item.category}`).split(' ')[0]}
                             </Flex>
 
                             {/* Title + type */}
@@ -425,8 +427,8 @@ const Articles: React.FC = () => {
             {/* Empty state */}
             {filteredArticles.length === 0 && (
               <Box px={4} py={8} textAlign="center">
-                <Text color={termHighlight} fontSize="sm">grep: no matches found</Text>
-                <Text color={termSecondary} fontSize="xs" mt={1}>Try adjusting your search or filter.</Text>
+                <Text color={termHighlight} fontSize="sm">{t('articles.noMatches')}</Text>
+                <Text color={termSecondary} fontSize="xs" mt={1}>{t('articles.tryAdjustingFilter')}</Text>
               </Box>
             )}
           </Box>
@@ -437,7 +439,7 @@ const Articles: React.FC = () => {
             align="center" justify="space-between" fontSize="2xs" color={termMuted}
           >
             <Text>
-              {filteredArticles.length}/{articles.length} shown
+              {filteredArticles.length}/{articles.length} {t('articles.shown')}
             </Text>
             <HStack spacing={1}>
               <Text color={termPrompt}>{siteOwner.terminalUsername}@blog:{promptPath}$</Text>
