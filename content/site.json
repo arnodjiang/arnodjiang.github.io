@@ -45,7 +45,7 @@
   "features": {
     "publications": true,
     "projects": false,
-    "articles": false,
+    "articles": true,
     "experience": true,
     "news": true,
     "pets": false,
