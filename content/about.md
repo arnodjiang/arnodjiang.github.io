@@ -1,30 +1,20 @@
 ---
 journeyPhases:
-  - period: "2020 - 2022"
-    title: Puppy Academy
-    org: Goodgirl Obedience School
-    description: Mastered sit, stay, and roll over. Graduated top of class in treat-motivated learning.
-    tags: [Sitting, Fetching, Treats]
-  - period: "2022 - 2024"
-    title: Junior Fetch Researcher
-    org: Backyard Research Institute
-    description: Conducted extensive fieldwork on optimal fetch trajectories and squirrel tracking algorithms.
-    tags: [Fetch, Zoomies, Squirrels]
-  - period: "2024 - Present"
-    title: Senior Good Girl
-    org: The Couch Lab
-    description: Leading research on nap optimization and treat distribution fairness. Published groundbreaking work on belly rub dynamics.
-    tags: [Napping, Treats, Belly Rubs]
+  - period: "2025.07 - Present"
+    title: Researcher Intern
+    org: AntGroup
+    description: Leading research on MLLMs for AIGC Detection.
+    tags: [MLLMs, AIGC Detection]
 mentorship:
-  heading: Pack Members
-  description: Cookie mentors younger pups and collaborates with fellow dogs on important research.
+  heading: Coauthors
+  description: Research Coauthor.
   mentees:
-    - name: Lucas (Lulu)
-      url: https://h-freax.github.io/TermHub
-      note: Ragdoll cat brother and best buddy, expert nap supervisor
-    - name: Yaoyao(Freax) Qian
-      url: https://h-freax.github.io/
-      note: Creator of TermHub, Cookie's favorite person in the world
+    - name: Xinbin Yuan
+      url: https://scholar.google.com/citations?user=Be26Qu8AAAAJ&hl=en
+      note: 🐍🐢GUI Master and co-author of Ivy-Fake.
+    - name: Yifei Bi
+      url: https://scholar.google.com/citations?user=On6HEc4AAAAJ&hl=zh-CN
+      note: Da Bi and co-author of Ivy-Fake.
 version:
   current: v1.0.0
   history:
