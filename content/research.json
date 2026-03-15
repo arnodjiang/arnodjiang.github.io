@@ -1,11 +1,11 @@
 {
   "currentResearch": [
     {
-      "lab": "The Couch Lab",
-      "emoji": "🛋️",
-      "advisor": "Dr. Belly Rubs",
-      "focus": "nap optimization and comfort-driven scheduling",
-      "link": "https://h-freax.github.io/TermHub"
+      "lab": "AntGroup",
+      "emoji": "🐜",
+      "advisor": "Jingjing Liu",
+      "focus": "AIGC Detection and RL.",
+      "link": "https://www.antgroup.com/"
     }
   ]
 }
