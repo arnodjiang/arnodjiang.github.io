@@ -43,8 +43,8 @@
   "pets": [],
   "features": {
     "publications": true,
-    "projects": true,
-    "articles": true,
+    "projects": false,
+    "articles": false,
     "experience": true,
     "news": true,
     "pets": false,
