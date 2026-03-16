@@ -3,19 +3,23 @@
   "name": {
     "full": "Changjiang Jiang",
     "first": "Changjiang",
-    "nickname": "Arnod Jiang",
+    "nickname": "Arnod",
     "last": "Jiang",
     "display": "Changjiang Jiang",
     "authorVariants": [
       "Changjiang Jiang"
     ]
   },
-  "title": "MLLMs for AIGC Detection, Table Agents",
-  "avatar": "avatar.jpg",
+  "title": "Hi there, I'm Changjiang Jiang",
+  "avatar": "avatar.png",
   "terminal": {
-    "username": "Arnod Jiang",
+    "username": "arnod",
     "rotatingSubtitles": [
-      "AIGC Detection"
+      "build cool projects",
+      "write some code",
+      "explore AI research",
+      "share knowledge",
+      "learn new things"
     ],
     "skills": [
       "MLLMs"
@@ -26,13 +30,13 @@
     "email": "thejiangcj@gmail.com",
     "academicEmail": "thejiangcj@gmail.com",
     "hiringEmail": "thejiangcj@gmail.com",
-    "location": "Hangzhou, China"
+    "location": "Zhejiang, China"
   },
   "social": {
-    "github": "arnodjiang.github.io",
-    "linkedin": "http://linkedin.com/in/changjiang-jiang-013b7b379/?skipRedirect=true",
+    "github": "https://github.com/arnodjiang",
+    "linkedin": "",
     "medium": "",
-    "googleScholar": "https://scholar.google.com/citations?view_op=list_works&hl=zh-CN&hl=zh-CN&user=cr5ZaY0AAAAJ",
+    "googleScholar": "",
     "twitter": "",
     "youtube": "",
     "bilibili": "",
@@ -43,7 +47,7 @@
   "pets": [],
   "features": {
     "publications": true,
-    "projects": false,
+    "projects": true,
     "articles": true,
     "experience": true,
     "news": true,

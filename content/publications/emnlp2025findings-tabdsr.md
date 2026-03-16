@@ -1,7 +1,7 @@
 ---
 id: emnlp2025findings-tabdsr
 title: "TabDSR: Decompose, Sanitize, and Reason for Complex Numerical Reasoning in Tabular Data"
-authors: "Changjiang Jiang, Fengchang Yu, Haihua Chen, Wei Lu, Jin Zeng"
+authors: ["Changjiang Jiang", "Fengchang Yu", "Haihua Chen", "Wei Lu", "Jin Zeng"]
 venue: EMNLP Findings
 venueType: conference
 year: 2025
