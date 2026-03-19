@@ -34,9 +34,9 @@
   },
   "social": {
     "github": "https://github.com/arnodjiang",
-    "linkedin": "",
+    "linkedin": "http://linkedin.com/in/changjiang-jiang-013b7b379/?skipRedirect=true",
     "medium": "",
-    "googleScholar": "",
+    "googleScholar": "https://scholar.google.com/citations?view_op=list_works&hl=zh-CN&hl=zh-CN&user=cr5ZaY0AAAAJ",
     "twitter": "",
     "youtube": "",
     "bilibili": "",
@@ -47,8 +47,8 @@
   "pets": [],
   "features": {
     "publications": true,
-    "projects": true,
-    "articles": true,
+    "projects": false,
+    "articles": false,
     "experience": true,
     "news": true,
     "pets": false,
