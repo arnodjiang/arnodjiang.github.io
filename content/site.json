@@ -10,16 +10,12 @@
       "Changjiang Jiang"
     ]
   },
-  "title": "Hi there, I'm Changjiang Jiang",
+  "title": "I'm a researcher",
   "avatar": "avatar.png",
   "terminal": {
     "username": "arnod",
     "rotatingSubtitles": [
-      "build cool projects",
-      "write some code",
-      "explore AI research",
-      "share knowledge",
-      "learn new things"
+      "MLLMs"
     ],
     "skills": [
       "MLLMs"
