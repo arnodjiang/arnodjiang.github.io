@@ -24,5 +24,18 @@
     "links": [
       { "text": "Paper", "url": "https://aclanthology.org/2025.findings-emnlp.169/", "icon": "FaFilePdf" }
     ]
+  },
+  {
+    "type": "publication",
+    "badge": "1 Paper",
+    "icon": "FaFileAlt",
+    "iconColor": "blue.400",
+    "title": "Ivy-Fake @ ICMR 2026",
+    "description": "📢Ivy-Fake has been accepted by ICMR 2026.",
+    "date": "Apr 2026",
+    "sortDate": "2026-04-16",
+    "links": [
+      { "text": "Paper", "url": "https://arxiv.org/abs/2506.00979", "icon": "FaFilePdf" }
+    ]
   }
 ]
