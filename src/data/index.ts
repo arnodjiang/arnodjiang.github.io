@@ -57,11 +57,44 @@ function mdToProject(raw: Record<string, unknown>): ProjectItem {
 }
 
 function mdToPublication(raw: Record<string, unknown>): Publication {
-  const { _body, ...rest } = raw
+  const { _body, links, ...rest } = raw
   const bodyStr = (_body as string) || ''
   // Strip HTML tags for plain text abstract
   const abstract = bodyStr.replace(/<[^>]+>/g, '').trim()
-  return { abstract, ...rest } as unknown as Publication
+  return { abstract, links: normalizePublicationLinks(links), ...rest } as unknown as Publication
+}
+
+function normalizePublicationLinks(rawLinks: unknown): Publication['links'] {
+  if (!rawLinks) return {}
+
+  if (Array.isArray(rawLinks)) {
+    return rawLinks.reduce<Publication['links']>((acc, link) => {
+      if (!link || typeof link !== 'object') return acc
+      const item = link as Record<string, unknown>
+      const url = typeof item.url === 'string' ? item.url : ''
+      const text = typeof item.text === 'string' ? item.text.toLowerCase() : ''
+      if (!url) return acc
+
+      if (text.includes('code') || text.includes('github')) acc.code = url
+      else if (text.includes('arxiv')) acc.arxiv = url
+      else if (text.includes('project')) acc.projectPage = url
+      else if (text.includes('data')) acc.dataset = url
+      else if (text.includes('demo')) acc.demo = url
+      else acc.paper = url
+
+      return acc
+    }, {})
+  }
+
+  if (typeof rawLinks === 'object') {
+    return rawLinks as Publication['links']
+  }
+
+  return {}
+}
+
+function isValidPublication(pub: Publication): boolean {
+  return Boolean(pub.id && pub.title && Array.isArray(pub.authors) && pub.venue && pub.year && pub.venueType)
 }
 
 function mdToAbout(raw: Record<string, unknown>): About {
@@ -86,7 +119,7 @@ const aboutMd = import.meta.glob('/content/about.md', { eager: true }) as Record
 
 export const projects: ProjectItem[] = collectMd(projectMds).map(mdToProject)
 export const articles: ProjectItem[] = collectMd(articleMds).map(mdToProject)
-export const publications: Publication[] = collectMd(publicationMds).map(mdToPublication)
+export const publications: Publication[] = collectMd(publicationMds).map(mdToPublication).filter(isValidPublication)
 
 const aboutRaw = Object.values(aboutMd)[0]?.default ?? {}
 export const about: About = mdToAbout(aboutRaw)

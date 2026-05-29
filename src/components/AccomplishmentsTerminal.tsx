@@ -111,6 +111,8 @@ const AwardRow = ({ award }: { award: Award }) => {
 }
 
 const AccomplishmentsTerminal: React.FC = () => {
+  if (awards.length === 0) return null
+
   return (
     <Container maxW={["full", "full", "7xl"]} px={[2, 4, 8]}>
       <Heading size={["sm", "md"]} mb={3}>Awards & Honors</Heading>

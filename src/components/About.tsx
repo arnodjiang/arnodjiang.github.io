@@ -1,5 +1,6 @@
 import { Box, VStack, Heading, Text, useColorModeValue, Link, HStack, Container, Badge, Flex, Image, Collapse, useDisclosure, Modal, ModalOverlay, ModalContent, ModalBody, ModalCloseButton } from '@chakra-ui/react'
 import { useMemo } from 'react'
+import { Link as RouterLink } from 'react-router-dom'
 import { research, experience, news, about, publications, institutionLogos } from '../data'
 import { siteConfig, selectedPublicationIds } from '@/site.config'
 import DynamicIcon from './DynamicIcon'
@@ -339,7 +340,7 @@ export default function About() {
                       <PublicationCard key={pub.id} pub={pub} />
                     ))}
                     <Box textAlign="center" pt={2}>
-                      <Link href="/publications" _hover={{ textDecoration: 'none' }}>
+                      <Link as={RouterLink} to="/publications" _hover={{ textDecoration: 'none' }}>
                         <HStack
                           spacing={2}
                           justify="center"
@@ -449,7 +450,7 @@ export default function About() {
                                 borderColor={useColorModeValue('gray.300', 'gray.600')}
                               />
                             </Box>
-                            <Link href="/experience" _hover={{ textDecoration: 'none' }}>
+                            <Link as={RouterLink} to="/experience" _hover={{ textDecoration: 'none' }}>
                               <HStack
                                 spacing={2}
                                 color={useColorModeValue('gray.400', 'gray.500')}

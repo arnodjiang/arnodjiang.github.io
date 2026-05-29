@@ -9,9 +9,7 @@ status: accepted
 isFirstAuthor: true
 keywords: ["Synthetic Image Detection", "Vision Language Model"]
 links:
-  - text: Paper
-    url: https://arxiv.org/abs/2506.00979
-    icon: FaFilePdf
+  paper: https://arxiv.org/abs/2506.00979
 ---
 
 We introduce IVY-FAKE, a unified explainable framework and benchmark for image and video AIGC detection.

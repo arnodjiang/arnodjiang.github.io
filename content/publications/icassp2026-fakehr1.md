@@ -9,9 +9,7 @@ status: published
 isFirstAuthor: true
 keywords: ["Synthetic Image Detection", "Vision Language Model"]
 links:
-  - text: Paper
-    url: https://www.alphaxiv.org/abs/2602.10042
-    icon: FaFilePdf
+  paper: https://www.alphaxiv.org/abs/2602.10042
 ---
 
 We introduce FAKE-HR1, a hybrid-thinking model.

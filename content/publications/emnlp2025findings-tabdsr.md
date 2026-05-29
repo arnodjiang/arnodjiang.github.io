@@ -1,34 +1,16 @@
 ---
-id: arxiv2026-defakerone
-title: "Venus-DeFakerOne: Unified Fake Image Detection & Localization"
-authors: [
-  "GuangJian Team",
-  "Changjiang Jiang",
-  "Chenfan Qu",
-  "Mingqi Fang",
-  "Song Zhou",
-  "Xuekang Zhu",
-  "Chenfeng Zhang",
-  "Jiangwei Xie",
-  "Longfei Liu",
-  "Zhenming Wang",
-  "Jingjing Liu",
-  "Jian Liu",
-  "Weiqiang Wang"
-]
-venue: arXiv
-venueType: preprint
-year: 2026
-status: preprint
+id: emnlp2025findings-tabdsr
+title: "TabDSR: Decompose, Sanitize, and Reason for Complex Numerical Reasoning in Tabular Data"
+authors: ["Changjiang Jiang", "Fengchang Yu", "Haihua Chen", "Wei Lu", "Jin Zeng"]
+venue: "Findings of EMNLP"
+venueType: conference
+year: 2025
+month: November
+status: published
 isFirstAuthor: true
-keywords: ["Fake Image Detection", "Forgery Localization", "FIDL", "AIGC Detection", "DeepFake Detection", "Foundation Model"]
+keywords: ["Tabular Reasoning", "Numerical Reasoning", "LLM Agents", "Program-of-Thoughts"]
 links:
-  - text: Paper
-    url: https://arxiv.org/abs/2605.14091
-    icon: FaFilePdf
-  - text: Code
-    url: https://github.com/venus-guangjian/Venus-DeFakerOne
-    icon: FaGithub
+  paper: https://aclanthology.org/2025.findings-emnlp.169/
 ---
 
-We introduce Venus-DeFakerOne, a unified foundation model for Fake Image Detection and Localization (FIDL). DeFakerOne addresses the fragmentation of existing forgery detection paradigms by jointly modeling diverse forgery domains, including AIGC, DeepFake, document forgery, and natural-image manipulation. Built upon a data-centric training strategy and a unified InternVL2 + SAM2 architecture, DeFakerOne enables simultaneous image-level forgery detection and pixel-level localization. Extensive experiments demonstrate that DeFakerOne achieves state-of-the-art performance across large-scale detection and localization benchmarks, showing strong robustness under real-world perturbations and recent generative models.
+TabDSR is a three-agent framework for complex numerical reasoning over tabular data. It decomposes complex questions, sanitizes noisy tables, and uses program-of-thought reasoning to derive final answers from cleaned table evidence. The paper also introduces CalTab151 for complex numerical reasoning over tables and reports strong gains across TAT-QA, TableBench, and CalTab151.
