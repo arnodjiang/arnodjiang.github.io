@@ -1,4 +1,26 @@
 [
+{
+  "type": "publication",
+  "badge": "1 Technical Report",
+  "icon": "FaFileAlt",
+  "iconColor": "blue.400",
+  "title": "Venus-DeFakerOne @ arXiv 2026",
+  "description": "📢 Venus-DeFakerOne is released as a unified foundation model for Fake Image Detection and Localization (FIDL), jointly addressing image-level forgery detection and pixel-level localization across AIGC, DeepFake, document forgery, and natural-image manipulation.",
+  "date": "May 2026",
+  "sortDate": "2026-05-13",
+  "links": [
+    {
+      "text": "Paper",
+      "url": "https://arxiv.org/abs/2605.14091",
+      "icon": "FaFilePdf"
+    },
+    {
+      "text": "Code",
+      "url": "https://github.com/venus-guangjian/Venus-DeFakerOne",
+      "icon": "FaGithub"
+    }
+  ]
+},
   {
     "type": "publication",
     "badge": "1 Paper",

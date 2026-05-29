@@ -1,20 +1,34 @@
 ---
-id: emnlp2025findings-tabdsr
-title: "TabDSR: Decompose, Sanitize, and Reason for Complex Numerical Reasoning in Tabular Data"
-authors: ["Changjiang Jiang", "Fengchang Yu", "Haihua Chen", "Wei Lu", "Jin Zeng"]
-venue: EMNLP Findings
-venueType: conference
-year: 2025
-status: published
+id: arxiv2026-defakerone
+title: "Venus-DeFakerOne: Unified Fake Image Detection & Localization"
+authors: [
+  "GuangJian Team",
+  "Changjiang Jiang",
+  "Chenfan Qu",
+  "Mingqi Fang",
+  "Song Zhou",
+  "Xuekang Zhu",
+  "Chenfeng Zhang",
+  "Jiangwei Xie",
+  "Longfei Liu",
+  "Zhenming Wang",
+  "Jingjing Liu",
+  "Jian Liu",
+  "Weiqiang Wang"
+]
+venue: arXiv
+venueType: preprint
+year: 2026
+status: preprint
 isFirstAuthor: true
-keywords: ["Table Agents", "TableQA"]
+keywords: ["Fake Image Detection", "Forgery Localization", "FIDL", "AIGC Detection", "DeepFake Detection", "Foundation Model"]
 links:
   - text: Paper
-    url: https://aclanthology.org/2025.findings-emnlp.169/
+    url: https://arxiv.org/abs/2605.14091
     icon: FaFilePdf
   - text: Code
-    url: https://github.com/arnodjiang/tabdsr
+    url: https://github.com/venus-guangjian/Venus-DeFakerOne
     icon: FaGithub
 ---
 
-We introduce TabDSR, a table agent for complex numerical reasoning in tabular data. TabDSR decomposes complex reasoning tasks into a series of simple subtasks, sanitizes the inputs to ensure correctness, and reasons over the subtasks to arrive at the final answer. TabDSR achieves state-of-the-art performance on a variety of numerical reasoning benchmarks, outperforming existing methods by a significant margin.
+We introduce Venus-DeFakerOne, a unified foundation model for Fake Image Detection and Localization (FIDL). DeFakerOne addresses the fragmentation of existing forgery detection paradigms by jointly modeling diverse forgery domains, including AIGC, DeepFake, document forgery, and natural-image manipulation. Built upon a data-centric training strategy and a unified InternVL2 + SAM2 architecture, DeFakerOne enables simultaneous image-level forgery detection and pixel-level localization. Extensive experiments demonstrate that DeFakerOne achieves state-of-the-art performance across large-scale detection and localization benchmarks, showing strong robustness under real-world perturbations and recent generative models.
