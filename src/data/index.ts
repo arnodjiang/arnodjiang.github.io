@@ -79,6 +79,7 @@ function normalizePublicationLinks(rawLinks: unknown): Publication['links'] {
       else if (text.includes('arxiv')) acc.arxiv = url
       else if (text.includes('project')) acc.projectPage = url
       else if (text.includes('data')) acc.dataset = url
+      else if (text.includes('model') || text.includes('hugging face') || text.includes('huggingface')) acc.model = url
       else if (text.includes('demo')) acc.demo = url
       else acc.paper = url
 

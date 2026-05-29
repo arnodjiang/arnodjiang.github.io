@@ -26,6 +26,7 @@ const renderBoldText = (text: string, color: string, boldColor: string) => {
 const researchLogos = institutionLogos
 const universityLogos = institutionLogos
 
+const normalizeAuthorName = (author: string) => author.replace(/\*/g, '').trim()
 
 // Publication card component with its own state
 const PubLink = ({ href, icon, label }: { href: string; icon: string; label: string }) => (
@@ -53,6 +54,29 @@ const PublicationCard = ({ pub }: { pub: any }) => {
   const { isOpen: isAbstractOpen, onToggle: onToggleAbstract } = useDisclosure();
   const { isOpen: isImageOpen, onOpen: onImageOpen, onClose: onImageClose } = useDisclosure();
   const borderColor = useColorModeValue('gray.200', 'gray.700');
+  const authorHighlightColor = useColorModeValue('cyan.700', 'cyan.200');
+  const authorRoleBorderColor = useColorModeValue('cyan.200', 'cyan.700');
+  const authorRoleTextColor = useColorModeValue('cyan.600', 'cyan.300');
+  const authorRoleBg = useColorModeValue('cyan.50', 'whiteAlpha.50');
+  const awardBadgeBorderColor = useColorModeValue('orange.200', 'orange.700');
+  const awardBadgeTextColor = useColorModeValue('orange.600', 'orange.300');
+  const awardBadgeBg = useColorModeValue('orange.50', 'whiteAlpha.50');
+  const neutralBadgeBorderColor = useColorModeValue('gray.200', 'gray.600');
+  const neutralBadgeTextColor = useColorModeValue('gray.500', 'gray.400');
+  const coFirstNoteColor = useColorModeValue('gray.400', 'gray.500');
+  const ownerNames = useMemo(
+    () => new Set(((siteConfig.name.authorVariants ?? [siteConfig.name.display]) as string[]).map(normalizeAuthorName)),
+    []
+  );
+  const coFirstAuthorNames = useMemo(
+    () => new Set(((pub.coFirstAuthors ?? []) as string[]).map(normalizeAuthorName)),
+    [pub.coFirstAuthors]
+  );
+  const authorRoleBadges = [
+    pub.isCoFirst ? 'Co-first Author' : pub.isFirstAuthor ? 'First Author' : null,
+    pub.isCorrespondingAuthor ? 'Corresponding Author' : null,
+  ].filter((badge): badge is string => Boolean(badge));
+  const badgeLabels = [...authorRoleBadges, ...((pub.specialBadges ?? []) as string[])];
 
   return (
     <Box
@@ -129,59 +153,65 @@ const PublicationCard = ({ pub }: { pub: any }) => {
           <VStack align="start" spacing={1.5} w="full">
             <Text fontSize="xs" color={useColorModeValue('gray.500', 'gray.400')} lineHeight="base" noOfLines={2}>
               {pub.authors.map((author: string, idx: number) => {
-                const isHighlighted = pub.isCoFirst && pub.coFirstAuthors?.includes(author)
+                const cleanAuthor = normalizeAuthorName(author)
+                const isCoFirstAuthor = pub.isCoFirst && coFirstAuthorNames.has(cleanAuthor)
+                const isHighlighted = ownerNames.has(cleanAuthor) || isCoFirstAuthor
+                const showCoFirstMark = author.includes('*') || isCoFirstAuthor
                 return (
                   <Text
                     as="span"
                     key={idx}
                     fontWeight={isHighlighted ? 'semibold' : 'normal'}
-                    color={isHighlighted ? useColorModeValue('gray.700', 'gray.200') : undefined}
+                    color={isHighlighted ? authorHighlightColor : undefined}
                   >
-                    {author}
-                    {isHighlighted && <Text as="sup" fontSize="2xs" color="cyan.400">*</Text>}
+                    {cleanAuthor}
+                    {showCoFirstMark && <Text as="sup" fontSize="2xs" color="cyan.400">*</Text>}
                     {idx < pub.authors.length - 1 && ', '}
                   </Text>
                 )
               })}
             </Text>
-            {pub.specialBadges && pub.specialBadges.length > 0 && (
+            {badgeLabels.length > 0 && (
               <HStack spacing={1.5} flexWrap="wrap">
-                {pub.specialBadges.map((badge: string) => (
-                  <Text
-                    key={badge}
-                    fontSize="2xs"
-                    fontFamily="mono"
-                    px={2}
-                    py={0.5}
-                    borderRadius="sm"
-                    border="1px solid"
-                    borderColor={
-                      badge === 'First Author' || badge === 'Co-First'
-                        ? useColorModeValue('cyan.200', 'cyan.700')
-                        : badge === 'Oral' || badge === 'Spotlight' || badge === 'Best Paper'
-                        ? useColorModeValue('orange.200', 'orange.700')
-                        : useColorModeValue('gray.200', 'gray.600')
-                    }
-                    color={
-                      badge === 'First Author' || badge === 'Co-First'
-                        ? useColorModeValue('cyan.600', 'cyan.300')
-                        : badge === 'Oral' || badge === 'Spotlight' || badge === 'Best Paper'
-                        ? useColorModeValue('orange.600', 'orange.300')
-                        : useColorModeValue('gray.500', 'gray.400')
-                    }
-                    bg={
-                      badge === 'First Author' || badge === 'Co-First'
-                        ? useColorModeValue('cyan.50', 'whiteAlpha.50')
-                        : badge === 'Oral' || badge === 'Spotlight' || badge === 'Best Paper'
-                        ? useColorModeValue('orange.50', 'whiteAlpha.50')
-                        : 'transparent'
-                    }
-                  >
-                    {badge}
-                  </Text>
-                ))}
+                {badgeLabels.map((badge: string) => {
+                  const isAuthorRole = ['First Author', 'Co-first Author', 'Co-First', 'Corresponding Author'].includes(badge)
+                  return (
+                    <Text
+                      key={badge}
+                      fontSize="2xs"
+                      fontFamily="mono"
+                      px={2}
+                      py={0.5}
+                      borderRadius="sm"
+                      border="1px solid"
+                      borderColor={
+                        isAuthorRole
+                          ? authorRoleBorderColor
+                          : badge === 'Oral' || badge === 'Spotlight' || badge === 'Best Paper'
+                          ? awardBadgeBorderColor
+                          : neutralBadgeBorderColor
+                      }
+                      color={
+                        isAuthorRole
+                          ? authorRoleTextColor
+                          : badge === 'Oral' || badge === 'Spotlight' || badge === 'Best Paper'
+                          ? awardBadgeTextColor
+                          : neutralBadgeTextColor
+                      }
+                      bg={
+                        isAuthorRole
+                          ? authorRoleBg
+                          : badge === 'Oral' || badge === 'Spotlight' || badge === 'Best Paper'
+                          ? awardBadgeBg
+                          : 'transparent'
+                      }
+                    >
+                      {badge}
+                    </Text>
+                  )
+                })}
                 {pub.isCoFirst && (
-                  <Text fontSize="2xs" color={useColorModeValue('gray.400', 'gray.500')} fontStyle="italic">
+                  <Text fontSize="2xs" color={coFirstNoteColor} fontStyle="italic">
                     * equal contribution
                   </Text>
                 )}
@@ -198,6 +228,7 @@ const PublicationCard = ({ pub }: { pub: any }) => {
             {pub.links.arxiv && <PubLink href={pub.links.arxiv} icon="SiArxiv" label="arXiv" />}
             {pub.links.projectPage && <PubLink href={pub.links.projectPage} icon="FaGlobe" label="Project" />}
             {pub.links.code && <PubLink href={pub.links.code} icon="FaGithub" label="Code" />}
+            {pub.links.model && <PubLink href={pub.links.model} icon="FaRobot" label="Model" />}
             {pub.links.demo && <PubLink href={pub.links.demo} icon="FaPlay" label="Demo" />}
             {pub.links.dataset && <PubLink href={pub.links.dataset} icon="FaDatabase" label="Dataset" />}
             {pub.abstract && (

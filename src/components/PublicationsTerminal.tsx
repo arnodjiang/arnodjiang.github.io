@@ -582,7 +582,7 @@ const PublicationsTerminal: React.FC = () => {
                   
                   {/* Resources */}
                   {!isMobile && (
-                    <HStack w="150px" spacing={1}>
+                    <HStack w="150px" spacing={1} flexWrap="wrap">
                       {pub.links.paper && (
                         <Tooltip label="Paper">
                           <Link href={pub.links.paper} isExternal onClick={(e) => e.stopPropagation()}>
@@ -601,6 +601,20 @@ const PublicationsTerminal: React.FC = () => {
                         <Tooltip label="Project">
                           <Link href={pub.links.projectPage} isExternal onClick={(e) => e.stopPropagation()}>
                             <Badge colorScheme="purple" fontSize="2xs">PROJ</Badge>
+                          </Link>
+                        </Tooltip>
+                      )}
+                      {pub.links.model && (
+                        <Tooltip label="Model">
+                          <Link href={pub.links.model} isExternal onClick={(e) => e.stopPropagation()}>
+                            <Badge colorScheme="cyan" fontSize="2xs">MODEL</Badge>
+                          </Link>
+                        </Tooltip>
+                      )}
+                      {pub.links.dataset && (
+                        <Tooltip label="Dataset">
+                          <Link href={pub.links.dataset} isExternal onClick={(e) => e.stopPropagation()}>
+                            <Badge colorScheme="teal" fontSize="2xs">DATA</Badge>
                           </Link>
                         </Tooltip>
                       )}
@@ -671,6 +685,7 @@ const PublicationsTerminal: React.FC = () => {
                                 <Badge
                                   colorScheme={
                                     key === 'code' ? 'green' :
+                                    key === 'model' ? 'cyan' :
                                     key === 'paper' || key === 'arxiv' ? 'blue' :
                                     key === 'projectPage' ? 'purple' :
                                     key === 'demo' ? 'orange' :

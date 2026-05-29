@@ -149,6 +149,7 @@ export interface Publication {
     arxiv?: string
     projectPage?: string
     code?: string
+    model?: string
     dataset?: string
     demo?: string
   }

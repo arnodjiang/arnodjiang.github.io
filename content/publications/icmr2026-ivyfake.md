@@ -10,6 +10,8 @@ isFirstAuthor: true
 keywords: ["Synthetic Image Detection", "Vision Language Model"]
 links:
   paper: https://arxiv.org/abs/2506.00979
+  model: https://huggingface.co/AI-Safeguard/Ivy-Fake
+  dataset: https://huggingface.co/datasets/AI-Safeguard/Ivy-Fake
 ---
 
 We introduce IVY-FAKE, a unified explainable framework and benchmark for image and video AIGC detection.
