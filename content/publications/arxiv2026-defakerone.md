@@ -20,7 +20,8 @@ venue: arXiv
 venueType: preprint
 year: 2026
 status: preprint
-isFirstAuthor: true
+isFirstAuthor: false
+specialBadges: ["Core Contribution"]
 keywords: ["Fake Image Detection", "Forgery Localization", "FIDL", "AIGC Detection", "DeepFake Detection", "Foundation Model"]
 links:
   paper: https://arxiv.org/abs/2605.14091

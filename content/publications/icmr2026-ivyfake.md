@@ -7,6 +7,7 @@ venueType: conference
 year: 2026
 status: accepted
 isFirstAuthor: true
+specialBadges: ["CCF-B"]
 keywords: ["Synthetic Image Detection", "Vision Language Model"]
 links:
   paper: https://arxiv.org/abs/2506.00979

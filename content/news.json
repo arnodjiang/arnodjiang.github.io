@@ -44,7 +44,8 @@
     "date": "Nov 2025",
     "sortDate": "2025-11-01",
     "links": [
-      { "text": "Paper", "url": "https://aclanthology.org/2025.findings-emnlp.169/", "icon": "FaFilePdf" }
+      { "text": "Paper", "url": "https://aclanthology.org/2025.findings-emnlp.169/", "icon": "FaFilePdf" },
+      { "text": "Code", "url": "https://github.com/arnodjiang/tabdsr", "icon": "FaGithub" }
     ]
   },
   {
@@ -57,7 +58,9 @@
     "date": "Apr 2026",
     "sortDate": "2026-04-16",
     "links": [
-      { "text": "Paper", "url": "https://arxiv.org/abs/2506.00979", "icon": "FaFilePdf" }
+      { "text": "Paper", "url": "https://arxiv.org/abs/2506.00979", "icon": "FaFilePdf" },
+      { "text": "Model", "url": "https://huggingface.co/AI-Safeguard/Ivy-Fake", "icon": "FaRobot" },
+      { "text": "Dataset", "url": "https://huggingface.co/datasets/AI-Safeguard/Ivy-Fake", "icon": "FaDatabase" }
     ]
   }
 ]

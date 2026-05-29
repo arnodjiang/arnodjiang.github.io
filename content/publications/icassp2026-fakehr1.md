@@ -7,6 +7,7 @@ venueType: conference
 year: 2026
 status: published
 isFirstAuthor: true
+specialBadges: ["CCF-B"]
 keywords: ["Synthetic Image Detection", "Vision Language Model"]
 links:
   paper: https://www.alphaxiv.org/abs/2602.10042

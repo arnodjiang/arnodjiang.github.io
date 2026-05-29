@@ -61,6 +61,12 @@ const PublicationCard = ({ pub }: { pub: any }) => {
   const awardBadgeBorderColor = useColorModeValue('orange.200', 'orange.700');
   const awardBadgeTextColor = useColorModeValue('orange.600', 'orange.300');
   const awardBadgeBg = useColorModeValue('orange.50', 'whiteAlpha.50');
+  const ccfBadgeBorderColor = useColorModeValue('purple.200', 'purple.700');
+  const ccfBadgeTextColor = useColorModeValue('purple.600', 'purple.300');
+  const ccfBadgeBg = useColorModeValue('purple.50', 'whiteAlpha.50');
+  const contributionBadgeBorderColor = useColorModeValue('green.200', 'green.700');
+  const contributionBadgeTextColor = useColorModeValue('green.600', 'green.300');
+  const contributionBadgeBg = useColorModeValue('green.50', 'whiteAlpha.50');
   const neutralBadgeBorderColor = useColorModeValue('gray.200', 'gray.600');
   const neutralBadgeTextColor = useColorModeValue('gray.500', 'gray.400');
   const coFirstNoteColor = useColorModeValue('gray.400', 'gray.500');
@@ -175,6 +181,9 @@ const PublicationCard = ({ pub }: { pub: any }) => {
               <HStack spacing={1.5} flexWrap="wrap">
                 {badgeLabels.map((badge: string) => {
                   const isAuthorRole = ['First Author', 'Co-first Author', 'Co-First', 'Corresponding Author'].includes(badge)
+                  const isCcfBadge = badge.startsWith('CCF-')
+                  const isContributionBadge = badge === 'Core Contribution'
+                  const isAwardBadge = ['Oral', 'Spotlight', 'Best Paper'].includes(badge)
                   return (
                     <Text
                       key={badge}
@@ -187,21 +196,33 @@ const PublicationCard = ({ pub }: { pub: any }) => {
                       borderColor={
                         isAuthorRole
                           ? authorRoleBorderColor
-                          : badge === 'Oral' || badge === 'Spotlight' || badge === 'Best Paper'
+                          : isCcfBadge
+                          ? ccfBadgeBorderColor
+                          : isContributionBadge
+                          ? contributionBadgeBorderColor
+                          : isAwardBadge
                           ? awardBadgeBorderColor
                           : neutralBadgeBorderColor
                       }
                       color={
                         isAuthorRole
                           ? authorRoleTextColor
-                          : badge === 'Oral' || badge === 'Spotlight' || badge === 'Best Paper'
+                          : isCcfBadge
+                          ? ccfBadgeTextColor
+                          : isContributionBadge
+                          ? contributionBadgeTextColor
+                          : isAwardBadge
                           ? awardBadgeTextColor
                           : neutralBadgeTextColor
                       }
                       bg={
                         isAuthorRole
                           ? authorRoleBg
-                          : badge === 'Oral' || badge === 'Spotlight' || badge === 'Best Paper'
+                          : isCcfBadge
+                          ? ccfBadgeBg
+                          : isContributionBadge
+                          ? contributionBadgeBg
+                          : isAwardBadge
                           ? awardBadgeBg
                           : 'transparent'
                       }

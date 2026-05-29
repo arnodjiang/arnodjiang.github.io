@@ -533,6 +533,8 @@ const PublicationsTerminal: React.FC = () => {
                             badge === 'Spotlight' ? 'yellow' :
                             badge === 'Main Track' ? 'blue' :
                             badge === 'First Author' ? 'green' :
+                            badge === 'Core Contribution' ? 'green' :
+                            badge.startsWith('CCF-') ? 'purple' :
                             badge === 'Corresponding' ? 'purple' :
                             badge === 'Demo' ? 'teal' :
                             badge === 'Co-First' ? 'cyan' :
