@@ -62,7 +62,8 @@
     "sortDate": "2026-04-16",
     "links": [
       { "text": "Paper", "url": "https://aclanthology.org/2025.findings-emnlp.169/", "icon": "FaFilePdf" },
-      { "text": "Code", "url": "https://github.com/arnodjiang/tabdsr", "icon": "FaGithub" }
+      { "text": "Code", "url": "https://github.com/arnodjiang/tabdsr", "icon": "FaGithub" },
+      { "text": "Dataset", "url": "https://huggingface.co/datasets/arnodjiang/CalTab151", "icon": "FaDatabase" }
     ]
   },
   {

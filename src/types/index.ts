@@ -138,7 +138,7 @@ export interface Publication {
   title: string
   authors: string[]
   venue: string
-  venueType: 'conference' | 'workshop' | 'demo' | 'preprint'
+  venueType: 'conference' | 'workshop' | 'demo' | 'preprint' | 'technical-report'
   year: number
   month?: string
   status: 'accepted' | 'published' | 'preprint'

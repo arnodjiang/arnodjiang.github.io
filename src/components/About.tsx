@@ -27,6 +27,7 @@ const researchLogos = institutionLogos
 const universityLogos = institutionLogos
 
 const normalizeAuthorName = (author: string) => author.replace(/\*/g, '').trim()
+const formatVenueType = (venueType: string) => venueType === 'technical-report' ? 'Technical Report' : venueType
 
 // Publication card component with its own state
 const PubLink = ({ href, icon, label }: { href: string; icon: string; label: string }) => (
@@ -145,7 +146,7 @@ const PublicationCard = ({ pub }: { pub: any }) => {
             </Text>
             {pub.venueType && (
               <Text fontSize="2xs" color={useColorModeValue('gray.400', 'gray.500')} fontFamily="mono">
-                / {pub.venueType}
+                / {formatVenueType(pub.venueType)}
               </Text>
             )}
           </HStack>

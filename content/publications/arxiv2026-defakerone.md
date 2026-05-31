@@ -17,9 +17,9 @@ authors: [
   "Weiqiang Wang"
 ]
 venue: arXiv
-venueType: preprint
+venueType: technical-report
 year: 2026
-status: preprint
+status: published
 isFirstAuthor: false
 specialBadges: ["Core Contribution"]
 keywords: ["Fake Image Detection", "Forgery Localization", "FIDL", "AIGC Detection", "DeepFake Detection", "Foundation Model"]
