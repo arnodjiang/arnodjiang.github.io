@@ -11,6 +11,7 @@ specialBadges: ["CCF-B"]
 keywords: ["Synthetic Image Detection", "Vision Language Model"]
 links:
   paper: https://www.alphaxiv.org/abs/2602.10042
+  code: https://github.com/arnodjiang/Fake-HR1
 ---
 
 We introduce FAKE-HR1, a hybrid-thinking model.

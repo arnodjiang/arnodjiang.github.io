@@ -48,7 +48,8 @@
     "date": "2026-03-15",
     "sortDate": "2026-03-15",
     "links": [
-      { "text": "Paper", "url": "https://www.alphaxiv.org/abs/2602.10042", "icon": "FaFilePdf" }
+      { "text": "Paper", "url": "https://www.alphaxiv.org/abs/2602.10042", "icon": "FaFilePdf" },
+      { "text": "Code", "url": "https://github.com/arnodjiang/Fake-HR1", "icon": "FaGithub" }
     ]
   },
   {
