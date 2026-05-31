@@ -1,4 +1,21 @@
 [
+  {
+    "type": "publication",
+    "badge": "1 Paper · CCF-A",
+    "icon": "FaFileAlt",
+    "iconColor": "blue.400",
+    "title": "Detect Any AI-Counterfeited Text Image @ CVPR 2026",
+    "description": "📢 Detect Any AI-Counterfeited Text Image has been accepted by CVPR 2026.",
+    "date": "May 2026",
+    "sortDate": "2026-05-31",
+    "links": [
+      {
+        "text": "PDF",
+        "url": "https://openaccess.thecvf.com/content/CVPR2026/papers/Qu_Detect_Any_AI-Counterfeited_Text_Image_CVPR_2026_paper.pdf",
+        "icon": "FaFilePdf"
+      }
+    ]
+  },
 {
   "type": "publication",
   "badge": "1 Technical Report",

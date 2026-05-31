@@ -66,6 +66,7 @@
   ],
   "selectedPublicationIds": [
     "arxiv2026-defakerone",
+    "cvpr2026-dancetext",
     "icassp2026-fakehr1",
     "emnlp2025findings-tabdsr",
     "icmr2026-ivyfake"
