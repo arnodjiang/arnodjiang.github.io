@@ -57,100 +57,26 @@ const HeroSection = ({ title, avatar, research = [], researchLogos = {}, educati
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8 }}
               as="h1"
-              fontSize={["lg", "xl", "3xl"]}
+              fontSize={["2xl", "3xl", "4xl"]}
               fontWeight="bold"
               color={headingColor}
               lineHeight="shorter"
               mb={[1, 2, 3]}
-              display="flex"
-              alignItems="center"
-              gap={[1, 2]}
-              flexWrap={["wrap", "wrap", "nowrap"]}
               textAlign={["center", "center", "left"]}
               w="full"
-              sx={{
-                justifyContent: ["center", "center", "flex-start"]
-              }}
+              fontFamily="mono"
             >
               <MotionText
                 as="span"
-                color="yellow.400"
-                initial={{ opacity: 0 }}
+                initial={{ opacity: 0, y: 6 }}
                 animate={{ opacity: 1 }}
-                transition={{ duration: 0.3 }}
-              >
-                $
-              </MotionText>
-              <MotionText
-                as="span"
-                initial={{ width: 0 }}
-                animate={{ width: "auto" }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-                overflow="hidden"
-                whiteSpace="nowrap"
+                transition={{ duration: 0.35, delay: 0.1 }}
+                color="cyan.400"
                 display="inline-block"
               >
-                Hi there, I'm{' '}
-              </MotionText>
-              <MotionText
-                as="span"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.2, delay: 0.6 }}
-                color="cyan.400"
-                fontFamily="mono"
-                display="flex"
-                alignItems="center"
-                gap={1}
-              >
-                <MotionText
-                  as="span"
-                  initial={{ width: 0 }}
-                  animate={{ width: "auto" }}
-                  transition={{ duration: 0.3, delay: 0.7 }}
-                  overflow="hidden"
-                  whiteSpace="nowrap"
-                >
-                  {siteOwner.name.display}
-                </MotionText>
+                {siteOwner.name.display}
               </MotionText>
             </MotionText>
-
-            <HStack
-              spacing={[1, 2]}
-              mb={[2, 3, 4]}
-              justify={['center', 'center', 'flex-start']}
-              flexWrap="wrap"
-              w="full"
-            >
-              <Text color="yellow.400" fontSize={["xs", "sm"]}>$</Text>
-              <Text fontSize={["xs", "sm"]} color={useColorModeValue('gray.600', 'gray.400')}>Sometimes I</Text>
-              <Box h={["18px", "20px", "24px"]} overflow="hidden">
-                <MotionBox
-                  animate={{ y: [0, -18, -36, -54, -72, -90, 0] }}
-                  transition={{
-                    duration: 8,
-                    times: [0, 0.15, 0.3, 0.45, 0.6, 0.75, 0.9],
-                    repeat: Infinity,
-                    ease: "linear"
-                  }}
-                >
-                  {siteOwner.rotatingSubtitles.map((text, index) => (
-                    <Text
-                      key={index}
-                      h={["18px", "20px", "24px"]}
-                      color="cyan.400"
-                      fontWeight="bold"
-                      fontSize={["xs", "sm"]}
-                      fontFamily="mono"
-                    >
-                      {text}
-                    </Text>
-                  ))}
-                </MotionBox>
-              </Box>
-            </HStack>
-
 
             <Box w="full" borderTop="1px dashed" borderColor={useColorModeValue('gray.200', 'gray.700')} />
 
@@ -216,12 +142,9 @@ const HeroSection = ({ title, avatar, research = [], researchLogos = {}, educati
 
             <Box w="full" borderTop="1px dashed" borderColor={useColorModeValue('gray.200', 'gray.700')} />
 
-            {/* Welcome + contact */}
-            <Flex w="full" direction={['column', 'column', 'row']} align={['center', 'center', 'center']} gap={[2, 2, 4]}>
-              <Text fontSize="xs" color={textColor} lineHeight="tall" textAlign={['center', 'center', 'left']} flex={1}>
-                Feel free to reach out! Whether for collaboration, brainstorming, or just exchanging ideas, I'd love to connect and explore new possibilities together.
-              </Text>
-              <HStack spacing={2} flexShrink={0}>
+            {/* Contact */}
+            <Flex w="full" align={['center', 'center', 'flex-start']} justify={['center', 'center', 'flex-start']}>
+              <HStack spacing={2} flexWrap="wrap" justify={['center', 'center', 'flex-start']}>
                 <Link href={`mailto:${siteOwner.contact.academicEmail}`} isExternal _hover={{ textDecoration: 'none' }}>
                   <HStack spacing={1.5} color={textColor} transition="all 0.15s" _hover={{ color: 'cyan.400' }}>
                     <DynamicIcon name="FaEnvelope" boxSize={3.5} />
@@ -233,6 +156,13 @@ const HeroSection = ({ title, avatar, research = [], researchLogos = {}, educati
                   <HStack spacing={1.5} color={textColor} transition="all 0.15s" _hover={{ color: 'cyan.400' }}>
                     <DynamicIcon name="FaLinkedin" boxSize={3.5} />
                     <Text fontSize="xs" fontFamily="mono">linkedin</Text>
+                  </HStack>
+                </Link>
+                <Text color={textColor} opacity={0.2}>/</Text>
+                <Link href={siteOwner.social.googleScholar} isExternal _hover={{ textDecoration: 'none' }}>
+                  <HStack spacing={1.5} color={textColor} transition="all 0.15s" _hover={{ color: 'cyan.400' }}>
+                    <DynamicIcon name="SiGooglescholar" boxSize={3.5} />
+                    <Text fontSize="xs" fontFamily="mono">google scholar</Text>
                   </HStack>
                 </Link>
               </HStack>

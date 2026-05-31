@@ -62,6 +62,12 @@
       "icon": "FaLinkedin",
       "label": "LinkedIn",
       "color": "#0A66C2"
+    },
+    {
+      "platform": "googleScholar",
+      "icon": "SiGooglescholar",
+      "label": "Google Scholar",
+      "color": "#4285F4"
     }
   ],
   "selectedPublicationIds": [
