@@ -6,7 +6,7 @@
     "iconColor": "blue.400",
     "title": "Detect Any AI-Counterfeited Text Image @ CVPR 2026",
     "description": "📢 Detect Any AI-Counterfeited Text Image has been accepted by CVPR 2026.",
-    "date": "May 2026",
+    "date": "2026-05-31",
     "sortDate": "2026-05-31",
     "links": [
       {
@@ -23,8 +23,8 @@
   "iconColor": "blue.400",
   "title": "Venus-DeFakerOne @ arXiv 2026",
   "description": "📢 Venus-DeFakerOne is released as a unified foundation model for Fake Image Detection and Localization (FIDL), jointly addressing image-level forgery detection and pixel-level localization across AIGC, DeepFake, document forgery, and natural-image manipulation.",
-  "date": "May 2026",
-  "sortDate": "2026-05-13",
+  "date": "2026-05-29",
+  "sortDate": "2026-05-29",
   "links": [
     {
       "text": "Paper",
@@ -45,8 +45,8 @@
     "iconColor": "blue.400",
     "title": "Fake-HR1 @ ICASSP 2026",
     "description": "📢Fake-HR1 has been accepted by ICASSP 2026, Hybrid-thinking.",
-    "date": "Dec 2025",
-    "sortDate": "2025-12-01",
+    "date": "2026-03-15",
+    "sortDate": "2026-03-15",
     "links": [
       { "text": "Paper", "url": "https://www.alphaxiv.org/abs/2602.10042", "icon": "FaFilePdf" }
     ]
@@ -58,8 +58,8 @@
     "iconColor": "blue.400",
     "title": "TabDSR @ EMNLP 2025 Findings",
     "description": "📢TabDSR has been accepted by EMNLP 2025 Findings, Table Agents.",
-    "date": "Nov 2025",
-    "sortDate": "2025-11-01",
+    "date": "2026-04-16",
+    "sortDate": "2026-04-16",
     "links": [
       { "text": "Paper", "url": "https://aclanthology.org/2025.findings-emnlp.169/", "icon": "FaFilePdf" },
       { "text": "Code", "url": "https://github.com/arnodjiang/tabdsr", "icon": "FaGithub" }
@@ -72,7 +72,7 @@
     "iconColor": "blue.400",
     "title": "Ivy-Fake @ ICMR 2026",
     "description": "📢Ivy-Fake has been accepted by ICMR 2026.",
-    "date": "Apr 2026",
+    "date": "2026-04-16",
     "sortDate": "2026-04-16",
     "links": [
       { "text": "Paper", "url": "https://arxiv.org/abs/2506.00979", "icon": "FaFilePdf" },
