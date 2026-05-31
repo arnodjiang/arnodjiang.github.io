@@ -9,6 +9,7 @@
     ]
   },
   "reviewing": [
+    { "venue": "NeurIPS 2026", "role": "Reviewer" },
     { "venue": "ICMR 2026", "role": "Reviewer" }
   ],
   "timeline": [
