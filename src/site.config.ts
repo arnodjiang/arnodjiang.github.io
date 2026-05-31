@@ -36,12 +36,20 @@ export const navItems = [
   ...(siteConfig.features.guide !== false ? [{ path: '/guide', label: 'Guide' }] : []),
 ] as const
 
+const resolveHeroSocialHref = (platform: string) => {
+  if (platform === 'email') {
+    return `mailto:${siteConfig.contact.academicEmail || siteConfig.contact.email}`
+  }
+
+  return (siteConfig.social as Record<string, string>)[platform] ?? ''
+}
+
 /** Hero social icons with resolved URLs from social config */
 export const heroSocialIcons = siteConfig.heroSocialIcons.map(item => ({
   icon: item.icon,
   label: item.label,
   color: item.color,
-  href: (siteConfig.social as Record<string, string>)[item.platform] ?? '',
+  href: resolveHeroSocialHref(item.platform),
 }))
 
 /**

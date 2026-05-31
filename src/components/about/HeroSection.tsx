@@ -142,31 +142,15 @@ const HeroSection = ({ title, avatar, research = [], researchLogos = {}, educati
 
             <Box w="full" borderTop="1px dashed" borderColor={useColorModeValue('gray.200', 'gray.700')} />
 
-            {/* Contact */}
-            <Flex w="full" align={['center', 'center', 'flex-start']} justify={['center', 'center', 'flex-start']}>
-              <HStack spacing={2} flexWrap="wrap" justify={['center', 'center', 'flex-start']}>
-                <Link href={`mailto:${siteOwner.contact.academicEmail}`} isExternal _hover={{ textDecoration: 'none' }}>
-                  <HStack spacing={1.5} color={textColor} transition="all 0.15s" _hover={{ color: 'cyan.400' }}>
-                    <DynamicIcon name="FaEnvelope" boxSize={3.5} />
-                    <Text fontSize="xs" fontFamily="mono">email</Text>
-                  </HStack>
-                </Link>
-                <Text color={textColor} opacity={0.2}>/</Text>
-                <Link href={siteOwner.social.linkedin} isExternal _hover={{ textDecoration: 'none' }}>
-                  <HStack spacing={1.5} color={textColor} transition="all 0.15s" _hover={{ color: 'cyan.400' }}>
-                    <DynamicIcon name="FaLinkedin" boxSize={3.5} />
-                    <Text fontSize="xs" fontFamily="mono">linkedin</Text>
-                  </HStack>
-                </Link>
-                <Text color={textColor} opacity={0.2}>/</Text>
-                <Link href={siteOwner.social.googleScholar} isExternal _hover={{ textDecoration: 'none' }}>
-                  <HStack spacing={1.5} color={textColor} transition="all 0.15s" _hover={{ color: 'cyan.400' }}>
-                    <DynamicIcon name="SiGooglescholar" boxSize={3.5} />
-                    <Text fontSize="xs" fontFamily="mono">google scholar</Text>
-                  </HStack>
-                </Link>
-              </HStack>
-            </Flex>
+            <Text
+              w="full"
+              fontSize={["sm", "md"]}
+              color={textColor}
+              fontFamily="mono"
+              textAlign={["center", "center", "left"]}
+            >
+              {title}
+            </Text>
           </VStack>
           <MotionBox
             initial={{ opacity: 0, scale: 0.95 }}

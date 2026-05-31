@@ -10,7 +10,7 @@
       "Changjiang Jiang"
     ]
   },
-  "title": "I'm a researcher",
+  "title": "I am a researcher",
   "avatar": "avatar.png",
   "terminal": {
     "username": "arnod",
@@ -51,6 +51,12 @@
     "guide": false
   },
   "heroSocialIcons": [
+    {
+      "platform": "email",
+      "icon": "FaEnvelope",
+      "label": "Email",
+      "color": "#06B6D4"
+    },
     {
       "platform": "github",
       "icon": "FaGithub",
