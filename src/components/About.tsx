@@ -537,21 +537,42 @@ export default function About() {
                           {about.mentorship.mentees.map((mentee, index) => (
                             <Flex
                               key={index}
-                              align="center"
+                              direction={["column", "row"]}
+                              align={["flex-start", "center"]}
                               gap={3}
                               py={2.5}
                               borderBottom="1px solid"
                               borderColor={useColorModeValue('gray.100', 'gray.800')}
                             >
-                              <Box w="6px" h="6px" borderRadius="full" bg="cyan.400" flexShrink={0} />
-                              <Link href={mentee.url} isExternal _hover={{ textDecoration: 'none' }}>
-                                <Text fontSize="sm" fontWeight="medium"
-                                  color={useColorModeValue('gray.700', 'gray.200')}
-                                  transition="color 0.15s" _hover={{ color: 'cyan.400' }}>
-                                  {mentee.name}
-                                </Text>
-                              </Link>
-                              {mentee.note && (
+                              <HStack spacing={3} minW={["auto", "180px"]}>
+                                <Box w="6px" h="6px" borderRadius="full" bg="cyan.400" flexShrink={0} />
+                                <Link href={mentee.url} isExternal _hover={{ textDecoration: 'none' }}>
+                                  <Text fontSize="sm" fontWeight="medium"
+                                    color={useColorModeValue('gray.700', 'gray.200')}
+                                    transition="color 0.15s" _hover={{ color: 'cyan.400' }}>
+                                    {mentee.name}
+                                  </Text>
+                                </Link>
+                              </HStack>
+                              {mentee.papers && mentee.papers.length > 0 ? (
+                                <HStack spacing={1.5} flexWrap="wrap">
+                                  {mentee.papers.map((paper) => (
+                                    <Badge
+                                      key={paper}
+                                      colorScheme="cyan"
+                                      variant="subtle"
+                                      borderRadius="sm"
+                                      px={2}
+                                      py={0.5}
+                                      fontSize="2xs"
+                                      fontFamily="mono"
+                                      letterSpacing="normal"
+                                    >
+                                      {paper}
+                                    </Badge>
+                                  ))}
+                                </HStack>
+                              ) : mentee.note && (
                                 <Text fontSize="2xs" fontFamily="mono" color={useColorModeValue('gray.400', 'gray.500')}>
                                   {mentee.note}
                                 </Text>

@@ -99,6 +99,7 @@ export interface About {
       name: string
       url: string
       note?: string
+      papers?: string[]
     }[]
   }
   version: {

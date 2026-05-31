@@ -6,15 +6,15 @@ journeyPhases:
     description: Leading research on MLLM Reasoning RL.
     tags: [MLLMs, RL]
 mentorship:
-  heading: Ivy-Fake Coauthors
-  description: Collaborators on the Ivy-Fake project.
+  heading: Coauthors
+  description: Selected collaborators and our shared papers.
   mentees:
     - name: Xinbin Yuan
       url: https://scholar.google.com/citations?user=Be26Qu8AAAAJ&hl=en
-      note: Ivy-Fake collaborator
+      papers: [Ivy-Fake]
     - name: Yifei Bi
       url: https://scholar.google.com/citations?user=On6HEc4AAAAJ&hl=zh-CN
-      note: Ivy-Fake collaborator
+      papers: [Ivy-Fake]
 version:
   current: v1.0.0
   history:
